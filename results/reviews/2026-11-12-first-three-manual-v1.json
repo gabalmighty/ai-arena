@@ -1,0 +1,146 @@
+{
+  "schema": "ai-arena/manual-gatekeeper-v1",
+  "review_id": "2026-11-12-first-three-manual-v1",
+  "reviewed_at_utc": "2026-11-11T18:14:17.369Z",
+  "reviewed_at_manila": "2026-11-12T02:14:17.371+08:00",
+  "prompt_version": "MANUAL-V1",
+  "benchmark_base_sha": "f78f8043c25abffc4555c64d3f4c6e2f960ed2c3",
+  "source_repository": "gabalmighty/ai-arena",
+  "methodology": "Equal weight per assessable task (0-100), independent source review plus bounded behavioral replay of locally reconstructed implementations; optional runtime missing != zero quality. No model is RECOMMENDED from one public run.",
+  "confidence": "provisional; session/provider identity and token costs unverified; independent checks locally reproduced behavior but not byte-for-byte exact GitHub artifacts",
+  "technical_verification": {
+    "t02": "Baidu manually reproduced ledger: 7 additional Python unittest cases passed. LongCat/Iceman starter unrepaired.",
+    "t03": "8 cross-model Node assertions: Baidu 8 pass, Iceman 8 pass, LongCat 7 pass / 1 missing visible Role label.",
+    "t04": "8 cross-model Node assertions: Baidu 8 pass, Iceman 7 pass, LongCat 7 pass; Iceman/LongCat disallow upsert without optional value.",
+    "t05": "12 Linux Node filesystem assertions including real symlink escapes: Baidu 12 pass, LongCat 12 pass, Iceman 11 pass; Iceman rejects legitimate ..notes.txt.",
+    "t08": "Submitted test logic replayed against buggy and correct shipping implementation. Baidu bug 5pass/7fail and reference 12pass/0fail; LongCat bug 4pass/6fail and reference 8pass/2fail due overstrict TypeError; Iceman bug 1pass/4fail and reference 5pass/0fail.",
+    "static_tasks": "T01, T06, T07, T09 inspected source and reasoning; no Docker image, browser/mobile device, CI, real cloud or production infrastructure tested.",
+    "limitation": "Behavioral tests ran on manually transcribed source logic, NOT a byte-identical downloaded GitHub checkout. Raw candidate model sessions not available. GitHub diffs inspected for file-scope and common secrets."
+  },
+  "scores": [
+    {
+      "model": "openrouter/baidu/ernie-5.5-flash-preview:free",
+      "provider_group": "openrouter",
+      "run_id": "20261111T172530Z__opencode-openrouter-baidu-ernie-5-5-flash-preview-free",
+      "submitted_via": "https://github.com/gabalmighty/ai-arena/pull/1",
+      "candidate_finish_manila": "2026-11-12T01:30:41.510+08:00",
+      "reported_duration_seconds": 311.462,
+      "duration_external_attestation": false,
+      "total_tasks": 9,
+      "scored_tasks": 9,
+      "task_scores": {
+        "T01": 100,
+        "T02": 100,
+        "T03": 100,
+        "T04": 100,
+        "T05": 100,
+        "T06": 90,
+        "T07": 100,
+        "T08": 100,
+        "T09": 100
+      },
+      "observed_quality_score": 98.9,
+      "verdict": "PASS WITH WARNINGS",
+      "verdict_reasons": [
+        "One public run; recommendation requires independent repeats and provider identity proof.",
+        "DevOps was static only; no browser/device/cloud verification.",
+        "Token/request/cost counters unavailable."
+      ],
+      "good_roles": [
+        "Repository Analyst",
+        "Backend Builder/Debugger (small scoped fix)",
+        "Web/Mobile/Desktop Logic",
+        "Reviewer/Test Engineer (provisional)"
+      ],
+      "warnings": [
+        "T05 Windows symlink test branches skipped in candidate run; separate Linux behavioral check passed.",
+        "All numerical duration/tokens derive from candidate report; independent model telemetry absent."
+      ]
+    },
+    {
+      "model": "opencode-go/iceman-contributor-free",
+      "provider_group": "opencode-go",
+      "run_id": "20261111T172855Z__opencode-go_iceman-contributor-free",
+      "submitted_via": "https://github.com/gabalmighty/ai-arena/commit/ae974b7194c2fe398a4984092b042c2b72101ec9",
+      "candidate_finish_manila": "2026-11-12T01:33:29+08:00",
+      "reported_duration_seconds": 274,
+      "duration_external_attestation": false,
+      "total_tasks": 9,
+      "scored_tasks": 8,
+      "task_scores": {
+        "T01": 100,
+        "T02": null,
+        "T03": 100,
+        "T04": 90,
+        "T05": 90,
+        "T06": 90,
+        "T07": 100,
+        "T08": 90,
+        "T09": 95
+      },
+      "observed_quality_score": 94.4,
+      "verdict": "INCOMPLETE",
+      "verdict_reasons": [
+        "T02 Python starter unrepaired because runtime not available; 8/9 coverage.",
+        "Candidate per-task durations sum 610 sec and overlap despite reported total of 274 sec; task timings unreliable.",
+        "Candidate did not create/push a PR; upload to main was a subsequent manual commit by owner."
+      ],
+      "good_roles": [
+        "Repository Analyst",
+        "Read-only Reviewer (provisional)",
+        "Structured Web and Mobile Logic"
+      ],
+      "warnings": [
+        "One Linux independent check fails for valid in-root ..notes.txt path.",
+        "T04 rejects an allowed optional-value upsert.",
+        "Token/request/cost counters unavailable."
+      ]
+    },
+    {
+      "model": "opencode-go/longcat-2.5-free",
+      "provider_group": "opencode-go",
+      "run_id": "20261111T172928Z__opencode-go_longcat-2.5-free",
+      "submitted_via": "https://github.com/gabalmighty/ai-arena/pull/2",
+      "candidate_finish_manila": "2026-11-12T01:43:26+08:00",
+      "reported_duration_seconds": 838,
+      "duration_external_attestation": false,
+      "total_tasks": 9,
+      "scored_tasks": 8,
+      "task_scores": {
+        "T01": 100,
+        "T02": null,
+        "T03": 85,
+        "T04": 90,
+        "T05": 100,
+        "T06": 90,
+        "T07": 95,
+        "T08": 65,
+        "T09": 55
+      },
+      "observed_quality_score": 85,
+      "verdict": "INCOMPLETE",
+      "verdict_reasons": [
+        "T02 Python starter unrepaired because runtime not available; 8/9 coverage.",
+        "T08 test suite falsely fails a correct reference implementation in 2/10 tests by requiring TypeError, although task only requires a meaningful exception.",
+        "T09 proposes publishing keys in JWKS/key set without clarifying symmetric secret protection; unsafe if made public."
+      ],
+      "good_roles": [
+        "Repository Analyst",
+        "Constrained Desktop Filesystem Logic",
+        "Static DevOps Configuration Review (provisional)"
+      ],
+      "warnings": [
+        "T03 omits visible Role label.",
+        "T04 rejects an allowed optional-value upsert.",
+        "Token/request/cost counters unavailable."
+      ]
+    }
+  ],
+  "token_usage_status": "unavailable for every model: null values are not zero tokens",
+  "repository_operations": {
+    "merged_pr_1": "8eb861cb37678be200e533fb22f9c87e401e1a8d",
+    "merged_pr_2": "adc082563477ec7d883f68022db9b9c04f957530",
+    "removed_accidental_gitlink": "87dcfed1ada19070bc34ece7c3ee99c7623a3a8c"
+  },
+  "correction_policy": "Scores for MANUAL-V1 only, not automatic v0.1 Docker benchmark. Do not overwrite run data; update review version explicitly if new evidence appears."
+}
