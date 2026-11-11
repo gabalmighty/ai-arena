@@ -74,7 +74,7 @@ Plan to implement these entrypoints **inside the repository**; command names bel
 | Windows host | 16 GB RAM minimum (more comfortable at 24–32 GB), SSD | Verify host memory before allocating VM |
 | Guest VM | 4 virtual CPUs; 6–8 GB RAM | One model running at a time |
 | Guest VHDX | 50–60 GB logical dynamic disk | Actual consumed disk less; monitor free host SSD |
-| Host free disk | About 50 GB safe starting headroom | Image, golden, snapshots, extraction and child VHDX; measured requirements TBD |
+| Host free disk | **80–100 GB free during first provisioning** as a conservative planning allowance | Azure VHD extraction, VHD-to-VHDX conversion, golden image and child VHDX can coexist; verify actual peak before promising a smaller footprint |
 | Per-task agent | Current runner cap 2 vCPU / 1 GiB RAM | Independent offline grader 1 CPU / 512 MiB |
 | Network | Dedicated restricted virtual switch/NAT | Internet needed for model endpoints and first bootstrap |
 
