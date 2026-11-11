@@ -1,0 +1,11 @@
+{
+  "notes": "Examples must be replaced by exact output from opencode models. Go uses your included plan quota, not automatically a zero-cost free tier. OpenRouter routes must end in :free.",
+  "models": [
+    {"group": "opencode-go", "model": "opencode-go/CHOOSE-ACTUAL-MODEL"},
+    {"group": "opencode-go", "model": "opencode-go/CHOOSE-ACTUAL-MODEL"},
+    {"group": "opencode-go", "model": "opencode-go/CHOOSE-ACTUAL-MODEL"},
+    {"group": "openrouter", "model": "openrouter/CHOOSE-ACTUAL-MODEL"},
+    {"group": "openrouter", "model": "openrouter/CHOOSE-ACTUAL-MODEL"},
+    {"group": "openrouter", "model": "openrouter/CHOOSE-ACTUAL-MODEL"}
+  ]
+}

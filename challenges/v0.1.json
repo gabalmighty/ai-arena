@@ -1,0 +1,144 @@
+{
+  "version": "0.1.0",
+  "tasks": [
+    {
+      "id": "repo-map",
+      "role": "Repository Analyst",
+      "domain": "backend",
+      "seconds": 240,
+      "allowed": [
+        "answer.json"
+      ],
+      "prompt": "This is an isolated codebase. Identify (a) the file and function that applies a customer discount and (b) the file and function used to record discount audit events. Do not change existing files. Write answer.json as valid JSON with exactly the keys \"calculator\" and \"audit\", formatted as relative_path:function_name. Cite only what is actually present.",
+      "files": {
+        "app/main.py": "from app.pricing import apply_discount\nfrom app.audit import record_discount\n\ndef checkout(total, offer):\n    value = apply_discount(total, offer)\n    record_discount(offer, total, value)\n    return value\n",
+        "app/pricing.py": "def apply_discount(total, percentage):\n    return round(total * (100 - percentage) / 100, 2)\n",
+        "app/audit.py": "def record_discount(code, before, after):\n    return {'code': code, 'before': before, 'after': after}\n",
+        "app/__init__.py": ""
+      },
+      "reference": {
+        "answer.json": "{\"calculator\":\"app/pricing.py:apply_discount\",\"audit\":\"app/audit.py:record_discount\"}\n"
+      }
+    },
+    {
+      "id": "python-refund",
+      "role": "Builder / Debugger",
+      "domain": "backend",
+      "seconds": 360,
+      "allowed": [
+        "ledger.py"
+      ],
+      "prompt": "Implement idempotent refunds. Ledger.refund(request_id, amount) adds amount to the balance only on the first occurrence of a given request_id; repeated calls with that ID must return the unchanged balance. Different IDs are independent. Keep the existing class/API and do not change unrelated files. Only edit ledger.py.",
+      "files": {
+        "ledger.py": "class Ledger:\n    def __init__(self, balance=0):\n        self.balance = balance\n\n    def refund(self, request_id, amount):\n        self.balance += amount\n        return self.balance\n",
+        "README.md": "# Refund ledger\nReturn the current integer balance after each refund. A request ID uniquely identifies a refund.\n"
+      },
+      "reference": {
+        "ledger.py": "class Ledger:\n    def __init__(self, balance=0):\n        self.balance = balance\n        self.seen = set()\n\n    def refund(self, request_id, amount):\n        if request_id not in self.seen:\n            self.seen.add(request_id)\n            self.balance += amount\n        return self.balance\n"
+      }
+    },
+    {
+      "id": "web-escape",
+      "role": "Web Builder",
+      "domain": "web",
+      "seconds": 300,
+      "allowed": [
+        "render.js"
+      ],
+      "prompt": "Fix formatWelcome(name) so untrusted display names cannot inject HTML into the heading. Preserve the surrounding <h1>Welcome, ...</h1> markup and existing exports. Escape ampersand, angle brackets, double and single quotes. Edit render.js only.",
+      "files": {
+        "render.js": "function formatWelcome(name) {\n  return `<h1>Welcome, ${name}</h1>`;\n}\nmodule.exports = { formatWelcome };\n",
+        "package.json": "{\"name\":\"arena-web\",\"version\":\"1.0.0\",\"private\":true,\"type\":\"commonjs\"}\n"
+      },
+      "reference": {
+        "render.js": "function formatWelcome(name) {\n  const safe = String(name).replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));\n  return `<h1>Welcome, ${safe}</h1>`;\n}\nmodule.exports = { formatWelcome };\n"
+      }
+    },
+    {
+      "id": "mobile-outbox",
+      "role": "Mobile Logic Builder",
+      "domain": "mobile_logic_only",
+      "seconds": 330,
+      "allowed": [
+        "queue.js"
+      ],
+      "prompt": "This module represents an offline-first mobile upload queue (logic only, NOT a device/UI test). Implement pendingUploads(outbox, acknowledgedIds): return items not already acknowledged, deduplicated by ID in first-occurrence order. Do not mutate inputs. Preserve the export; edit queue.js only.",
+      "files": {
+        "queue.js": "function pendingUploads(outbox, acknowledgedIds) {\n  return outbox.filter(job => !acknowledgedIds.includes(job.id));\n}\nmodule.exports = { pendingUploads };\n"
+      },
+      "reference": {
+        "queue.js": "function pendingUploads(outbox, acknowledgedIds) {\n  const ids = new Set(acknowledgedIds);\n  return outbox.filter(job => {\n    if (ids.has(job.id)) return false;\n    ids.add(job.id);\n    return true;\n  });\n}\nmodule.exports = { pendingUploads };\n"
+      }
+    },
+    {
+      "id": "desktop-path",
+      "role": "Desktop Logic Builder",
+      "domain": "desktop_logic_only",
+      "seconds": 300,
+      "allowed": [
+        "paths.js"
+      ],
+      "prompt": "This is a simulated desktop-app file-open permission helper, NOT an actual Electron GUI test. canOpen(filePath, baseDir) must accept only the base directory or lexically resolved paths inside it. Reject ../ traversal and sibling prefixes (e.g. docs-old). Symbolic-link resolution is outside this pilot. Use Node built-in libraries; preserve exports and edit paths.js only.",
+      "files": {
+        "paths.js": "function canOpen(filePath, baseDir) {\n  return filePath.startsWith(baseDir);\n}\nmodule.exports = { canOpen };\n"
+      },
+      "reference": {
+        "paths.js": "const path = require('node:path');\nfunction canOpen(filePath, baseDir) {\n  const file = path.resolve(filePath);\n  const base = path.resolve(baseDir);\n  return file === base || file.startsWith(base + path.sep);\n}\nmodule.exports = { canOpen };\n"
+      }
+    },
+    {
+      "id": "devops-dockerfile",
+      "role": "DevOps Config Engineer",
+      "domain": "devops_static_only",
+      "seconds": 300,
+      "allowed": [
+        "Dockerfile"
+      ],
+      "prompt": "Harden the sample Node service Dockerfile. Use the already specified node:22-bookworm-slim base, install exactly from the lockfile using `npm ci --omit=dev`, and run the app as the existing non-root `node` user. Retain the startup command. Do not add network-fetched scripts, do not modify source or package files. This is static config verification only, not a production deployment.",
+      "files": {
+        "Dockerfile": "FROM node:22-bookworm-slim\nWORKDIR /app\nCOPY package.json package-lock.json ./\nRUN npm install\nCOPY . .\nCMD [\"node\", \"server.js\"]\n",
+        "package.json": "{\"name\":\"arena-service\",\"version\":\"1.0.0\",\"scripts\":{\"start\":\"node server.js\"},\"private\":true}\n",
+        "package-lock.json": "{\"name\":\"arena-service\",\"version\":\"1.0.0\",\"lockfileVersion\":3,\"requires\":true,\"packages\":{\"\":{\"name\":\"arena-service\",\"version\":\"1.0.0\"}}}\n",
+        "server.js": "console.log(\"health check\");\n"
+      },
+      "reference": {
+        "Dockerfile": "FROM node:22-bookworm-slim\nWORKDIR /app\nCOPY package.json package-lock.json ./\nRUN npm ci --omit=dev\nCOPY . .\nUSER node\nCMD [\"node\", \"server.js\"]\n"
+      }
+    },
+    {
+      "id": "code-review",
+      "role": "Reviewer / Gatekeeper",
+      "domain": "security_review",
+      "seconds": 300,
+      "allowed": [
+        "review.json"
+      ],
+      "prompt": "Audit auth.js for correctness and security flaws. DO NOT modify auth.js. Write review.json as {\"findings\":[{\"kind\":\"short_snake_case_issue\",\"file\":\"auth.js\"}]} and include only high-confidence actionable defects. Avoid speculation. There are at most three relevant material defects; use succinct kind labels, e.g. \"unsigned_token\" for accepting a disabled signature algorithm.",
+      "files": {
+        "auth.js": "function verifyToken(token) {\n  const parts = token.split('.');\n  const header = JSON.parse(Buffer.from(parts[0], 'base64url').toString());\n  if (header.alg === 'none') return true;\n  return parts.length === 3 && verifySignature(token);\n}\nfunction verifySignature(token) { return token.endsWith('.signed'); }\nfunction isLocked(attempts) { return attempts > 5; }\nmodule.exports = {verifyToken, isLocked};\n",
+        "SPEC.md": "# Auth contract\nUnsigned token algorithms must be rejected. Accounts lock after five failed attempts (including the fifth).\nThe signature-verification routine is separately trusted; evaluate only the two behavioral contracts above on syntactically well-formed input.\n"
+      },
+      "reference": {
+        "review.json": "{\"findings\":[{\"kind\":\"unsigned_token\",\"file\":\"auth.js\"},{\"kind\":\"lockout_boundary\",\"file\":\"auth.js\"}]}\n"
+      }
+    },
+    {
+      "id": "test-author",
+      "role": "Test Engineer",
+      "domain": "backend",
+      "seconds": 360,
+      "allowed": [
+        "test_shipping.py"
+      ],
+      "prompt": "Write test_shipping.py with Python unittest tests demonstrating the shipping-fee edge cases specified in SPEC.md. Do not modify shipping.py. Tests must fail against the bug and pass after a correct fix. Include at least two meaningful test methods. Edit test_shipping.py only.",
+      "files": {
+        "shipping.py": "def shipping_cost(subtotal):\n    return 0 if subtotal > 50 else 6\n",
+        "SPEC.md": "Shipping costs 6 units for subtotals below 50 and is free for subtotals 50 or higher.\n"
+      },
+      "reference": {
+        "test_shipping.py": "import unittest\nfrom shipping import shipping_cost\n\nclass ShippingTests(unittest.TestCase):\n    def test_at_threshold(self):\n        self.assertEqual(shipping_cost(50), 0)\n    def test_below_threshold(self):\n        self.assertEqual(shipping_cost(49), 6)\n    def test_above_threshold(self):\n        self.assertEqual(shipping_cost(51), 0)\n"
+      },
+      "oracle_source": "def shipping_cost(subtotal):\n    return 0 if subtotal >= 50 else 6\n"
+    }
+  ]
+}

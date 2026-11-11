@@ -1,0 +1,8 @@
+# NEVER commit credentials, raw transcripts or local test environments.
+.arena-private/
+.arena-secrets.env
+models.local.json
+*.env
+__pycache__/
+*.pyc
+.DS_Store
