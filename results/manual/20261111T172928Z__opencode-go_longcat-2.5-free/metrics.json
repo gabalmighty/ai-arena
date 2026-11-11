@@ -151,9 +151,9 @@
     "The remote already contained branch arena/manual-20261111T172530Z (a different run ID); it was not modified."
   ],
   "submission": {
-    "git_branch": null,
-    "git_commit": null,
-    "pr_url": null,
-    "pushed": false
+    "git_branch": "arena/manual-20261111T172928Z__opencode-go_longcat-2.5-free",
+    "git_commit": "b848ca9a3d3c17dc642fac07552efcedd02bdc0d",
+    "pr_url": "https://github.com/gabalmighty/ai-arena/pull/2",
+    "pushed": true
   }
 }
