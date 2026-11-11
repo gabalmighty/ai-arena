@@ -81,7 +81,7 @@
       "observed_quality_score": 94.4,
       "verdict": "INCOMPLETE",
       "verdict_reasons": [
-        "T02 Python starter unrepaired because runtime not available; 8/9 coverage.",
+        "T02 Python starter unrepaired after the candidate reported runtime unavailable; 8/9 coverage.",
         "Candidate per-task durations sum 610 sec and overlap despite reported total of 274 sec; task timings unreliable.",
         "Candidate did not create/push a PR; upload to main was a subsequent manual commit by owner."
       ],
@@ -120,7 +120,7 @@
       "observed_quality_score": 85,
       "verdict": "INCOMPLETE",
       "verdict_reasons": [
-        "T02 Python starter unrepaired because runtime not available; 8/9 coverage.",
+        "T02 Python starter unrepaired after the candidate reported runtime unavailable; 8/9 coverage.",
         "T08 test suite falsely fails a correct reference implementation in 2/10 tests by requiring TypeError, although task only requires a meaningful exception.",
         "T09 proposes publishing keys in JWKS/key set without clarifying symmetric secret protection; unsafe if made public."
       ],
@@ -142,5 +142,12 @@
     "merged_pr_2": "adc082563477ec7d883f68022db9b9c04f957530",
     "removed_accidental_gitlink": "87dcfed1ada19070bc34ece7c3ee99c7623a3a8c"
   },
-  "correction_policy": "Scores for MANUAL-V1 only, not automatic v0.1 Docker benchmark. Do not overwrite run data; update review version explicitly if new evidence appears."
+  "correction_policy": "Scores for MANUAL-V1 only, not automatic v0.1 Docker benchmark. Do not overwrite run data; update review version explicitly if new evidence appears.",
+  "environment_comparability": {
+    "status": "UNVERIFIED",
+    "baidu_claim": "Windows NT 10.0.26300, Node 22.16, Python 3.13 via py -3",
+    "iceman_claim": "Windows, Node 24.19, python/python3 aliases not runnable; py launcher not documented as checked",
+    "longcat_claim": "Windows NT 10.0.26200, Node 24.19, python/python3/py checked but no real interpreter",
+    "implication": "Runs launched concurrently but self-reported host OS/toolchain versions differ. Do not attribute time or T02 absence solely to model capability without environment parity verification."
+  }
 }
