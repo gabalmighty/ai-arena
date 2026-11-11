@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "lines": "03",
+      "kind": "auth_bypass_client_header",
+      "severity": "P0",
+      "evidence": "isAdmin trusts the client-controlled x-admin header, allowing unauthorized admin access without verified identity."
+    },
+    {
+      "lines": "06-08",
+      "kind": "incomplete_webhook_signature_verification",
+      "severity": "P0",
+      "evidence": "webhookOk compares only an 8-hex-char HMAC prefix and not in constant time, so forged signatures can be accepted."
+    },
+    {
+      "lines": "10-12",
+      "kind": "sql_injection_string_concat",
+      "severity": "P0",
+      "evidence": "invoiceQuery concatenates untrusted tenantId and invoiceId into SQL, enabling query manipulation."
+    },
+    {
+      "lines": "14-15",
+      "kind": "rate_limit_off_by_one",
+      "severity": "P1",
+      "evidence": "overLimit returns false when requestCount is 6, so the sixth request in a window is not blocked as required."
+    }
+  ]
+}
