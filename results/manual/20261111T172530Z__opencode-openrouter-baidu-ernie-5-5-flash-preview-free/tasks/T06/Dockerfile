@@ -1,0 +1,12 @@
+FROM node:22.16.0-bookworm-slim
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY . .
+
+USER node
+
+CMD ["node", "server.js"]
