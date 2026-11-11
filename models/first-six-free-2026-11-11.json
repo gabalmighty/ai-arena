@@ -1,0 +1,38 @@
+{
+  "schema": "ai-arena/model-matrix/v0.1",
+  "cohort": "first-six-free-2026-11-11",
+  "description": "Three OpenCode Go limited-time free and three OpenRouter :free routes. Provider access, tool-use and quota are unverified until live preflight.",
+  "source_date": "2026-11-11",
+  "notes": [
+    "The OpenRouter ERNIE paid bare route requested was openrouter/baidu/ernie-5.5-flash-preview. Free cohort intentionally uses the separately documented :free endpoint.",
+    "Model route ids must be confirmed against the actual authenticated opencode models list before execution.",
+    "Go included subscription usage is a distinct allowance from OpenRouter free tier.",
+    "Never silently substitute a model, or accept non-:free OpenRouter routes for a zero-cost cohort."
+  ],
+  "models": [
+    {
+      "group": "opencode-go",
+      "model": "opencode-go/beam-free"
+    },
+    {
+      "group": "opencode-go",
+      "model": "opencode-go/iceman-contributor-free"
+    },
+    {
+      "group": "opencode-go",
+      "model": "opencode-go/longcat-2.5-free"
+    },
+    {
+      "group": "openrouter",
+      "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
+    },
+    {
+      "group": "openrouter",
+      "model": "openrouter/baidu/ernie-5.5-flash-preview:free"
+    },
+    {
+      "group": "openrouter",
+      "model": "openrouter/dots-studio/dots-3-note-preview:free"
+    }
+  ]
+}
