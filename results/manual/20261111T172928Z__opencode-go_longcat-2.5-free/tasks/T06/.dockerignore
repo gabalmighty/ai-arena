@@ -1,0 +1,55 @@
+# T06 — keep secrets, VCS metadata, dependencies and generated artifacts out
+# of the build context and the image.
+
+# --- Version control / CI metadata ---
+.git
+.gitignore
+.github
+.gitattributes
+
+# --- Environment files and secrets (never bake credentials into an image) ---
+.env
+.env.*
+*.env
+*.env.*
+secrets
+secrets.**
+**/secrets
+**/secrets.**
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.crt
+**/*.p8
+
+# --- Dependencies (installed inside the image via npm ci) ---
+node_modules
+node_modules.**
+**/node_modules
+**/node_modules.**
+
+# --- Local build / cache / logs ---
+.npm
+.cache
+dist
+build
+coverage
+*.log
+npm-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+.vscode
+.idea
+
+# --- Generated benchmark results and run artifacts ---
+results
+results.**
+**/.arena-private
+
+# --- Tests and docs not required at runtime ---
+test
+tests
+docs
+*.md
+!README.md

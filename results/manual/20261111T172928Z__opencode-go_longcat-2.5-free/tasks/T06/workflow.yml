@@ -1,0 +1,38 @@
+# T06 — non-deploying, test-only CI.
+# It installs from the lockfile and runs the test suite. It never deploys,
+# never pushes, and never pipes a remote script into a shell.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: read repository contents only. No write scope, no
+# credentials, no deployment authority.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Major tag only. Its immutability is UNVERIFIED in this offline run;
+      # pin to a full-length commit SHA for supply-chain integrity.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Install exactly the locked dependencies; no global installs.
+      - name: Install dependencies
+        run: npm ci
+
+      # Test-only step. No curl | bash, no deploy, no secret export.
+      - name: Run tests
+        run: npm test
