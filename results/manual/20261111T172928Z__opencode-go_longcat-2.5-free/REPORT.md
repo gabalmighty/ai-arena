@@ -231,7 +231,9 @@ run-level checkpoints above were measured, so per-task `elapsed_seconds` is
 ## Submission status
 
 - **Branch:** `arena/manual-20261111T172928Z__opencode-go_longcat-2.5-free`
-- **Commit:** `b848ca9a3d3c17dc642fac07552efcedd02bdc0d`
+- **Results commit:** `b848ca9a3d3c17dc642fac07552efcedd02bdc0d` (the commit that
+  introduces the full results tree). A follow-up commit records the submission
+  metadata above; the branch HEAD is the PR head recorded by GitHub.
 - **PR:** https://github.com/gabalmighty/ai-arena/pull/2 (targets `main`, **not merged**)
 - **Pushed:** yes. `main` remains at `f78f8043c25abffc4555c64d3f4c6e2f960ed2c3`.
 - A push dry-run confirmed write authorization before the real push; no
