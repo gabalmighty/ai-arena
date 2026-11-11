@@ -148,7 +148,7 @@
     "T05 symlink escape and inside-symlink cases were skipped with EPERM on Windows; Linux/macOS behavior is untested.",
     "T06 Docker CLI is absent; no image build, container run or live deployment was performed.",
     "T08 tests intentionally fail against the supplied defective shipping.js; this is mutation detection, not a failed task.",
-    "metrics.git_commit identifies the run-content commit cacd995; the branch HEAD includes a metadata-only follow-up commit for this submission record."
+    "metrics.git_commit identifies the run-content commit cacd995; the branch HEAD includes metadata-only follow-up commits for submission records."
   ],
   "submission": {
     "git_branch": "arena/manual-20261111T172530Z",

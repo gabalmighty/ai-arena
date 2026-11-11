@@ -3,7 +3,7 @@
 ## Checks actually executed
 
 - Static inspection of `Dockerfile`, `.dockerignore` and `workflow.yml` only.
-- `git diff --check` on the staged run folder (no whitespace errors expected; see the run log).
+- `git diff --check` on the staged run folder — passed (RC 0).
 - Confirmed that the `docker` CLI is **not installed** on this host (`docker --version` returned "not recognized"). Therefore no image was built, no container was run, no registry pull was attempted, and no live deployment was performed.
 - The workflow was not executed by GitHub Actions. `npm ci` and `npm test` were not run because this task directory intentionally has no `package.json` or test suite; the workflow's correctness is a static configuration claim.
 - The remote starter URL `https://example.invalid/install.sh` was not downloaded or executed.
