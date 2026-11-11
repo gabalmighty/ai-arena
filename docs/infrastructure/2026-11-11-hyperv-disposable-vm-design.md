@@ -125,6 +125,7 @@ Confirmed by direct inspection of `arena.py`, `container/Dockerfile`, `models.ex
 8. **Publishing boundary:** `python arena.py publish --confirm` performs `git push origin HEAD:main` from the same guest if used there. Move publish to a trusted, separate actor and require review of sanitized results. Candidate containers currently cannot push directly, but keep the GitHub token outside the disposable guest.
 9. **Trust labels:** v0.1's README says “Latest verified evaluations” while results are self-reported until reproduced. Prefer **Latest recorded evaluation** vs **Independently reproduced** badge and preserve original provenance.
 10. **Timing:** no evidence that this suite completes within 30–60 min on these six routes; enforce per-model maximum and expose incomplete coverage honestly. 6 × 8 model tasks can exceed free daily limits and take multiple hours in aggregate.
+11. **Score freshness:** current README renderer picks the latest recorded run without expiry. An old PASS could stay visible after the free route is deprecated or silently changes backend. Display **last checked, freshness and availability** separately; make operational recommendation expire (proposed 30-day default, immediately on known deprecation or route mismatch), preserving the historical score.
 
 All of the above are *design review findings*, not evidence of an actual runtime failure or a successful VM boot.
 
@@ -140,7 +141,7 @@ All of the above are *design review findings*, not evidence of an actual runtime
 | HYPERV_06_GRADER | Existing eight baseline and reference oracles requalified inside guest; final patch graded offline |
 | HYPERV_07_CATALOG | All six exact routes checked for model identity, tool support, free price, provider errors and regional/privacy settings |
 | HYPERV_08_RESUME | Interrupted run resumes only unfinished trials, preserving previous timestamps and preventing duplicate consumption |
-| HYPERV_09_SCOREBOARD | Only actual, complete evidence earns role verdict; unavailable/quota/paid routes do not get false FAIL |
+| HYPERV_09_SCOREBOARD | Only actual, complete evidence earns role verdict; unavailable/quota/paid routes do not get false FAIL; stale verdicts flagged |
 | HYPERV_10_DESTROY | Destroy only removes owned child VM/disk after evidence collection; host and golden intact |
 
 **First milestone:** Implement IaC, run on one Hyper-V laptop, pass host/golden/clone/teardown integrity tests with **zero model calls**. **Second milestone:** smoke test one free route with tiny task then all six. **Third milestone:** publish only qualified timestamped results. Do not publish guessed scores.
