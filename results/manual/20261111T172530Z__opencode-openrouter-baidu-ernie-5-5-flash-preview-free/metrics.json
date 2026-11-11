@@ -147,12 +147,13 @@
     "The model route is from session metadata only; no provider request ID or usage record was available, so silent fallback cannot be excluded.",
     "T05 symlink escape and inside-symlink cases were skipped with EPERM on Windows; Linux/macOS behavior is untested.",
     "T06 Docker CLI is absent; no image build, container run or live deployment was performed.",
-    "T08 tests intentionally fail against the supplied defective shipping.js; this is mutation detection, not a failed task."
+    "T08 tests intentionally fail against the supplied defective shipping.js; this is mutation detection, not a failed task.",
+    "metrics.git_commit identifies the run-content commit cacd995; the branch HEAD includes a metadata-only follow-up commit for this submission record."
   ],
   "submission": {
     "git_branch": "arena/manual-20261111T172530Z",
-    "git_commit": null,
-    "pr_url": null,
-    "pushed": false
+    "git_commit": "cacd995466804b51df1ddcbc87e35acb0c57246f",
+    "pr_url": "https://github.com/gabalmighty/ai-arena/pull/1",
+    "pushed": true
   }
 }

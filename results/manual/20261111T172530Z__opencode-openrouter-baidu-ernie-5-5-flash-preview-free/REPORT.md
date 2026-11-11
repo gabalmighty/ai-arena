@@ -158,7 +158,7 @@ No production deployment, cluster command, secret read, Docker build, browser te
 - **No browser or device runtime:** T03 accessibility and visual behavior, T04 mobile sync on a real device, and T05 desktop GUI behavior are not certified.
 - **No model telemetry:** input/output/reasoning/cache token counts, request count and cost were not exposed by this session. They are recorded as null, not estimated.
 - **Model identity:** only session metadata is available; no provider request ID or usage record was exposed. A silent fallback is not detectable.
-- **Git publication:** the repository was freshly cloned; only `results/manual/` is modified. Push authorization is being attempted after this report; see `metrics.json` and the final response for the verified branch/PR result or `UPLOAD_BLOCKED`.
+- **Git publication:** the repository was freshly cloned; only `results/manual/` is modified. The branch `arena/manual-20261111T172530Z` was pushed to `gabalmighty/ai-arena`, and PR `#1` was opened at `https://github.com/gabalmighty/ai-arena/pull/1` (not merged). `metrics.json` records the run-content commit `cacd995`; a metadata-only follow-up commit records this submission information.
 - **No production actions:** no cluster, cloud account, secret store, real service, network scan or external LLM was used. No subagent was invoked.
 
 ## Final integrity checklist
