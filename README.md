@@ -2,9 +2,25 @@
 
 **Real engineering tasks. Role-by-role scores. OpenCode only.**
 
-AI Arena is an open, reproducible screening harness for AI coding models. It tests whether a specific **provider/model route, through OpenCode**, can perform safe, constrained software engineering in disposable environments. The latest model scores appear here; historical runs remain in [results/runs](results/runs/). All timestamps are explicit in Philippine time (UTC+08:00) and UTC.
+AI Arena is an open, reproducible screening harness for AI coding models. It tests whether a specific **provider/model route, through OpenCode**, can perform safe, constrained software engineering in disposable environments. The latest **manually Gatekeeper-reviewed** model scores appear below. Candidate artifacts remain in [results/manual](results/manual/), independent reviews in [results/reviews](results/reviews/), and automated benchmark runs (when available) in [results/runs](results/runs/). Timestamps use Philippine time (UTC+08:00) and UTC.
 
-> **Release status: v0.1.0 pilot.** Eight benchmark fixtures and deterministic grading oracles have passed baseline/reference qualification. **No live model evaluation has been conducted by the project maintainer in this release.** The Docker/OpenCode remote-provider path still requires a first on-machine smoke test. Public results are self-reported until independently reproduced.
+> **Release status:** The first **three MANUAL-V1 model runs have been independently reviewed**, but none is production-certified. The separate Docker-based **automated v0.1.0 benchmark still has no live model runs** and needs its first on-machine integration test. Do not mix manual and automated scores.
+
+## Latest manual evaluation — November 12, 2026 (PHT)
+
+**Gatekeeper review:** 2026-11-12 02:14 +08:00 · [Full independent review](docs/reviews/2026-11-12-first-three-manual-v1.md) · [Machine-readable scores](results/reviews/2026-11-12-first-three-manual-v1.json) · [Manual V1 prompt](prompts/MANUAL_MODEL_EVALUATION_V1.md)
+
+| Model / exact OpenCode route | Current evaluation verdict | Assessed-task quality | Task coverage | Model-run finish (PHT) | Evidence |
+| --- | --- | ---: | ---: | --- | --- |
+| `openrouter/baidu/ernie-5.5-flash-preview:free` | **PASS WITH WARNINGS** | **98.9 / 100** | **9/9** | Nov 12, 01:30 | [Merged PR #1](https://github.com/gabalmighty/ai-arena/pull/1) |
+| `opencode-go/iceman-contributor-free` | **INCOMPLETE** | **94.4 / 100** on 8 tasks | **8/9** | Nov 12, 01:33 | [Main commit](https://github.com/gabalmighty/ai-arena/commit/ae974b7194c2fe398a4984092b042c2b72101ec9) |
+| `opencode-go/longcat-2.5-free` | **INCOMPLETE** | **85.0 / 100** on 8 tasks | **8/9** | Nov 12, 01:43 | [Merged PR #2](https://github.com/gabalmighty/ai-arena/pull/2) |
+
+**Quick use guidance:** Baidu is the strongest **provisional, human-supervised** choice from this cohort for structured small backend fixes, test writing and web/mobile logic. Iceman shows promise in source mapping and read-only reviews but has **missing Python coverage and inconsistent task timings**. LongCat performed well in filesystem and source analysis but produced **two false-positive test failures against a correct reference** and a **signing-key publication warning**. No model earns `RECOMMENDED | PASSED` yet.
+
+**Important:** Points are reviewer diagnostic scores on tiny public tasks, **not a success probability or direct comparison when coverage differs**. Python T02 was **not completed** by Iceman or LongCat because their hosts lacked Python, and all three lacked reliable provider-side token/request/cost telemetry. Iceman's candidate did **not** try to create a PR; its artifacts were committed separately by the owner. Duration details and artifact checks are in the full review. All submitted evidence remains archived.
+
+### Separate automated benchmark
 
 <!-- ARENA:BEGIN -->
 ### Latest verified evaluations
