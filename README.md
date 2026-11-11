@@ -20,6 +20,12 @@ AI Arena is an open, reproducible screening harness for AI coding models. It tes
 These scores do **not** establish real-device mobile/desktop reliability, live DevOps safety, or production readiness.
 <!-- ARENA:END -->
 
+## Planned Hyper-V deployment (no host Docker)
+
+A native Windows Hyper-V laptop can host a disposable **Ubuntu 24.04 VM** that runs the existing AI Arena Docker containers **inside the Linux guest**, with no Docker Desktop, Python, Node, or OpenCode installation on Windows. The proposed one-time PowerShell + cloud-init + versioned golden-image deployment is documented in [Hyper-V disposable VM design](docs/infrastructure/2026-11-11-hyperv-disposable-vm-design.md).
+
+The [first six free-model candidate matrix](models/first-six-free-2026-11-11.json) contains three OpenCode Go free routes and three OpenRouter `:free` routes, including the separately listed free ERNIE variant. The host VM scripts **have not been implemented or hardware-validated**. Treat this as the next engineering phase, not a runnable setup command. The direct Docker instructions below remain available for existing Linux users.
+
 ## Run it yourself
 
 **Requirements:** Python 3.11+, Docker Desktop/Engine running in **Linux-container mode**, Internet access for the model provider, and an isolated API key for each provider. The scripts use only Python standard-library modules; Node 22, Python 3 and OpenCode v2 are installed in the Docker image. On Windows, run these commands in PowerShell (replace `python` with `py -3` if needed).
