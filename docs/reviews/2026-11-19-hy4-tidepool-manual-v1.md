@@ -101,8 +101,8 @@ Source SHA evidence is stored in the [machine-readable review](../../results/rev
 
 | Candidate | Owner-observed completion | Model-reported clock | Difference | Interpretation |
 | --- | ---: | ---: | ---: | --- |
-| Hy4 Flash | **11m 56s (716 sec)** | **7m 44s (464 sec)** | **4m 12s** | Candidate clock stops before parts of publishing/finishing; measurement boundaries differ |
-| Tidepool Alpha | **47m 47s (2,867 sec)** | **41m 29s (2,489 sec)** | **6m 18s** | Large elapsed overhead; only 328 seconds of explicit per-task intervals are documented |
+| Hy4 Flash | **11m 56s (716 sec)** | **7m 44s (464 sec)** | **4m 12s** | Measurement windows differ; unverified publication or setup overhead may contribute |
+| Tidepool Alpha | **47m 47s (2,867 sec)** | **41m 29s (2,489 sec)** | **6m 18s** | Large elapsed overhead; only 327 seconds of explicit per-task intervals are documented |
 
 The owner values are supplied externally; the candidate values are self-reported. The exact origin of the discrepancies has **not** been independently established. The Tidepool excess time may involve tool latency, reasoning, planning, idle time, publication steps, or other overhead; there is **no evidence to allocate it to a specific cause**. Hy4 recorded overlapping T07/T08 task windows; those per-task times should not be summed as independent sequential work. Speed and correctness must remain separate columns.
 
