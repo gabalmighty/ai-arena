@@ -4,21 +4,27 @@
 
 AI Arena is an open, reproducible screening harness for AI coding models. It tests whether a specific **provider/model route, through OpenCode**, can perform safe, constrained software engineering in disposable environments. The latest **manually Gatekeeper-reviewed** model scores appear below. Candidate artifacts remain in [results/manual](results/manual/), independent reviews in [results/reviews](results/reviews/), and automated benchmark runs (when available) in [results/runs](results/runs/). Timestamps use Philippine time (UTC+08:00) and UTC.
 
-> **Release status:** The first **three MANUAL-V1 model runs have been independently reviewed**, but none is production-certified. The separate Docker-based **automated v0.1.0 benchmark still has no live model runs** and needs its first on-machine integration test. Do not mix manual and automated scores.
+> **Release status:** **Five MANUAL-V1 model runs have been reviewed**, but none is production-certified. The separate Docker-based **automated v0.1.0 benchmark still has no live model runs** and needs its first on-machine integration test. Do not mix manual and automated scores.
 
-## Latest manual evaluation — November 12, 2026 (PHT)
+## Latest manual evaluation — November 19, 2026 (PHT)
 
-**Gatekeeper review:** 2026-11-12 02:14 +08:00 · [Full independent review](docs/reviews/2026-11-12-first-three-manual-v1.md) · [Machine-readable scores](results/reviews/2026-11-12-first-three-manual-v1.json) · [Manual V1 prompt](prompts/MANUAL_MODEL_EVALUATION_V1.md)
+**Five models now evaluated under MANUAL-V1.** [Full Nov 19 Hy4/Tidepool Gatekeeper review](docs/reviews/2026-11-19-hy4-tidepool-manual-v1.md) · [Prior Nov 12 three-model review](docs/reviews/2026-11-12-first-three-manual-v1.md) · [Canonical machine-readable leaderboard](results/reviews/latest-manual.json) · [Evaluation prompt](prompts/MANUAL_MODEL_EVALUATION_V1.md).
 
-| Model / exact OpenCode route | Current evaluation verdict | Assessed-task quality | Task coverage | Model-run finish (PHT) | Evidence |
-| --- | --- | ---: | ---: | --- | --- |
-| `openrouter/baidu/ernie-5.5-flash-preview:free` | **PASS WITH WARNINGS** | **98.9 / 100** | **9/9** | Nov 12, 01:30 | [Merged PR #1](https://github.com/gabalmighty/ai-arena/pull/1) |
-| `opencode-go/iceman-contributor-free` | **INCOMPLETE** | **94.4 / 100** on 8 tasks | **8/9** | Nov 12, 01:33 | [Main commit](https://github.com/gabalmighty/ai-arena/commit/ae974b7194c2fe398a4984092b042c2b72101ec9) |
-| `opencode-go/longcat-2.5-free` | **INCOMPLETE** | **85.0 / 100** on 8 tasks | **8/9** | Nov 12, 01:43 | [Merged PR #2](https://github.com/gabalmighty/ai-arena/pull/2) |
+| Rank (completed runs) | OpenCode model route | Final Gatekeeper result | Diagnostic quality | Coverage | Model-run finish (PHT) | Evidence |
+| ---: | --- | --- | ---: | ---: | --- | --- |
+| **1** | `openrouter/baidu/ernie-5.5-flash-preview:free` | **PASS WITH WARNINGS** | **98.9/100** | **9/9** | Nov 12, 01:30 | [PR #1](https://github.com/gabalmighty/ai-arena/pull/1) |
+| **2** | `opencode-go/hy4-flash-free` | **PASS WITH WARNINGS** | **95.6/100** | **9/9** | Nov 19, 18:44 | [PR #3](https://github.com/gabalmighty/ai-arena/pull/3) |
+| **3** | `opencode/tidepool-alpha-free` | **PASS WITH WARNINGS** | **90.6/100** | **9/9** | Nov 19, 19:18 | [PR #4](https://github.com/gabalmighty/ai-arena/pull/4) |
+| — | `opencode-go/iceman-contributor-free` | **INCOMPLETE** | **94.4/100*** | **8/9** | Nov 12, 01:33 | [Owner commit](https://github.com/gabalmighty/ai-arena/commit/ae974b7194c2fe398a4984092b042c2b72101ec9) |
+| — | `opencode-go/longcat-2.5-free` | **INCOMPLETE** | **85.0/100*** | **8/9** | Nov 12, 01:43 | [PR #2](https://github.com/gabalmighty/ai-arena/pull/2) |
 
-**Quick use guidance:** Baidu is the strongest **provisional, human-supervised** choice from this cohort for structured small backend fixes, test writing and web/mobile logic. Iceman shows promise in source mapping and read-only reviews but has **missing Python coverage and inconsistent task timings**. LongCat performed well in filesystem and source analysis but produced **two false-positive test failures against a correct reference** and a **signing-key publication warning**. No model earns `RECOMMENDED | PASSED` yet.
+*** IMPORTANT:** Incomplete 8/9 scores **exclude the missing Python task** and **must not be ranked directly** against the 9/9 scores. All ratings are reviewer diagnostics on tiny public tasks, **not production success rates**. The official automated Docker benchmark has not been run.
 
-**Important:** Points are reviewer diagnostic scores on tiny public tasks, **not a success probability or direct comparison when coverage differs**. Python T02 was **not completed** by Iceman or LongCat after they **reported** Python unavailable. Their reported OS/toolchain versions differ from Baidu's, so environment parity was **not verified**. All three lacked reliable provider-side token/request/cost telemetry. Iceman's candidate did **not** try to create a PR; its artifacts were committed separately by the owner. Duration details and artifact checks are in the full review. All submitted evidence remains archived.
+**Current team guidance:** **Baidu** is the leading provisional structured small-fix/test candidate. **Hy4** is another strong supervised option for backend, web/mobile logic and testing, but needs external security review (its report miscalculates an HMAC's prefix entropy). **Tidepool** appears capable in scoped Python/web work, but do **not** grant it autonomous CI/DevOps changes (the submitted workflow used `permissions: read-all` instead of `contents: read`) or signing-key rollout authority. **Iceman** and **LongCat** retain plausible narrow read-only/supervised roles but need complete Python coverage and repeat tests. No model qualifies for **RECOMMENDED | PASSED** or production autonomy from this single benchmark.
+
+**Timing and cost:** For Hy4, owner-observed **11m56s** versus candidate-reported **7m44s**. For Tidepool, owner-observed **47m47s** versus candidate-reported **41m29s**. Timer boundaries differ; exact causes are unknown. Provider token counts, request counts, and measured cost were unavailable for all five—**unknown is not zero**. Use a host-side logger for future time comparisons.
+
+**Evaluation freshness:** Candidate completion timestamps and Gatekeeper review dates are retained in the [JSON leaderboard](results/reviews/latest-manual.json). Free/alpha endpoints may change; historical PASS is **not proof of present availability**. Review the model route and current quota before assigning work. Score update: **November 19, 2026 (Philippine time)**.
 
 ### Separate automated benchmark
 
