@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "lines": "03",
+      "kind": "auth_bypass_via_client_controlled_header",
+      "severity": "P0",
+      "evidence": "The OR clause treats an attacker-supplied x-admin: yes header as sufficient for admin, bypassing authenticated identity and exposing invoices."
+    },
+    {
+      "lines": "06-08",
+      "kind": "truncated_hmac_signature_verification",
+      "severity": "P1",
+      "evidence": "Only the first 8 hex characters (16 bits) of the HMAC are checked with startsWith, allowing a brute-forced prefix to pass and using a non-constant-time comparison."
+    },
+    {
+      "lines": "10-12",
+      "kind": "sql_injection_via_string_concatenation",
+      "severity": "P1",
+      "evidence": "tenantId and invoiceId are concatenated into a quoted SQL literal, so a quote in either value can alter the WHERE clause and disclose other tenants' invoices."
+    },
+    {
+      "lines": "15",
+      "kind": "rate_limit_off_by_one",
+      "severity": "P2",
+      "evidence": "requestCount > 6 returns false when requestCount is 6, so the sixth request is not blocked as required."
+    }
+  ]
+}
