@@ -1,0 +1,157 @@
+{
+  "schema": "ai-arena/manual-gatekeeper-v1",
+  "review_id": "2026-11-19-hy4-tidepool-manual-v1",
+  "reviewed_at_utc": "2026-11-19T11:39:55.404Z",
+  "reviewed_at_manila": "2026-11-19T19:39:55.404+08:00",
+  "prompt_version": "MANUAL-V1",
+  "benchmark_base_sha": "18b955f174289a20288dd9d7d0e3670da37f9504",
+  "scoring_note": "Equal diagnostic weight across nine MANUAL-V1 tasks (0-100); standalone single public run, no statistical calibration. Quality score is NOT production safety probability. Formal status PASS WITH WARNINGS until repeated, blinded, provider-attested runs are available.",
+  "coverage_note": "Both new submissions cover 9/9 tasks. The earlier Baidu/Iceman/LongCat reports retain previously reviewed scores; earlier incomplete scores are means over assessed tasks only.",
+  "review_method": "GitHub connector inspected file scopes, metadata and source. For T02/T03/T04/T05/T08 the tested local source files were verified byte-identical by Git blob SHA to GitHub, then externally graded with Python 3.13 and Node 22. Review/T01/T06/T09 were checked statically. No Docker image/cloud/mobile-device/browser evaluated.",
+  "hardware_note": "Independent test host is Linux with Python 3.13 and Node 22. Candidate Windows runs used OpenCode 2.2.7. OS-specific path behavior is reported separately.",
+  "source_checksums": {
+    "hy4": {
+      "T02": "fbaec03bf5d0eefea817aa70206e293f0d938283",
+      "T03": "4c1a52eff65bb0bd75c130e840656a042a4fff21",
+      "T04": "0e7a0623f8a7cb5d6d1f06b1d3eb9ba73f04ab85",
+      "T05": "cc5d0b51046c857cecffb4cfaf1e76f265b35976",
+      "T08_test": "1d77d6fe7eb4f101562f24484ad8847416c2b590",
+      "T08_subject": "fb47f39e0b61d1f97be828484845f6583fb1671a"
+    },
+    "tidepool": {
+      "T02": "aad8f20ca29e14f00e3e982c50bec3eb1c8b12f1",
+      "T03": "4c07fdb4044fce06dabfa548667c9da40b7f18c5",
+      "T04": "d17aa9d99931fd17744f43e0016eb80a5680f1ac",
+      "T05": "1db986b1973f21f34d8ed05a7b7f969f08696281",
+      "T08_test": "0a2bc0152973bd679047a747f5a5b9857f230f7f",
+      "T08_subject": "fb47f39e0b61d1f97be828484845f6583fb1671a"
+    }
+  },
+  "observations": {
+    "hy4": {
+      "ledger": "11/12 independently passed; changed event metadata with integer key 1 vs string '1' escaped conflict detection due str(k) fingerprint",
+      "profile": "10/10 additional web checks",
+      "sync": "12/12 additional mobile-logic checks",
+      "filesystem": "16/17 Linux checks, including escape and in-root symlink; rejects valid POSIX name a:b.txt",
+      "shipping": "Against buggy function 3 pass/4 fail; against correct reference 7 pass/0 fail",
+      "devops": "Correct least-privilege workflow and Node22 setup; Docker build unavailable; unpinned action major tag disclosed",
+      "security_review": "Four correct distinct seeded defects, but HMAC 8 hex characters incorrectly described as 16 bits; actual is 32 bits",
+      "decision": "Proper BLOCKED dispositions and explicit key-overlap safety caveats",
+      "metric_quality": "Candidate T07/T08 durations share same timestamps; therefore those per-task timings are not independently measured"
+    },
+    "tidepool": {
+      "ledger": "12/12 independently passed",
+      "profile": "10/10 additional web checks",
+      "sync": "10/12 additional sync checks; upsert without optional value adds property value:undefined and server record missing deleted field not rejected",
+      "filesystem": "16/17 Linux checks, including both symlink cases; rejects valid POSIX name a:b.txt",
+      "shipping": "Against buggy function 1 pass/4 fail; against correct reference 5 pass/0 fail",
+      "devops": "Least-privilege contract violated by permissions:read-all; no setup-node step for Node22. actions/checkout SHA is confirmed to be official v4 ref. No Docker build/CI run",
+      "security_review": "All four seeded defects, with P2 HMAC severity downplayed and speculative claim that online HMAC prefix guessing is trivial",
+      "decision": "Incorrect PARTIAL label for unverified session preservation; old signing key reinstatement needs compromise-aware authorization and security review",
+      "metric_quality": "Only 328 seconds of task intervals documented out of 2,489 seconds total. Unattributed time is not interpreted as model reasoning or waiting"
+    }
+  },
+  "results": [
+    {
+      "model": "opencode-go/hy4-flash-free",
+      "provider_group": "opencode-go",
+      "pr": 3,
+      "merge_commit_sha": "735edc25eaf229155da0e8ea24644d694873697f",
+      "run_id": "20261119T103630Z__opencode-go_hy4-flash-free",
+      "finished_manila": "2026-11-19T18:44:14+08:00",
+      "completed_tasks": 9,
+      "expected_tasks": 9,
+      "quality_score": 95.6,
+      "verdict": "PASS WITH WARNINGS",
+      "task_scores": {
+        "T01": 100,
+        "T02": 95,
+        "T03": 100,
+        "T04": 100,
+        "T05": 95,
+        "T06": 90,
+        "T07": 85,
+        "T08": 100,
+        "T09": 95
+      },
+      "seconds_candidate": 464,
+      "seconds_owner": 716,
+      "tokens": null,
+      "cost_usd": null,
+      "requests": null,
+      "role_suggestions": [
+        "Structured small backend builder (human review)",
+        "Web/mobile logic implementation",
+        "Test Engineer",
+        "Read-only repository analyst"
+      ],
+      "restrictions": [
+        "Not autonomous security Gatekeeper; quantitative HMAC mistake",
+        "No production DevOps approval; only static Docker/CI checks",
+        "One public run, exact provider backend not attested"
+      ],
+      "known_issues": [
+        "T02 nonstring-key fingerprint collision on extra field",
+        "T05 POSIX colon filename rejected",
+        "T07 eight hex HMAC characters incorrectly called 16 bits",
+        "T07/T08 task timestamps overlap"
+      ]
+    },
+    {
+      "model": "opencode/tidepool-alpha-free",
+      "provider_group": "opencode",
+      "pr": 4,
+      "merge_commit_sha": "2cb2eb4271f704460f430001df8609e6ed0e83e2",
+      "run_id": "20261119T183636Z__opencode-tidepool-alpha-free",
+      "finished_manila": "2026-11-19T19:18:05+08:00",
+      "completed_tasks": 9,
+      "expected_tasks": 9,
+      "quality_score": 90.6,
+      "verdict": "PASS WITH WARNINGS",
+      "task_scores": {
+        "T01": 100,
+        "T02": 100,
+        "T03": 100,
+        "T04": 85,
+        "T05": 95,
+        "T06": 70,
+        "T07": 90,
+        "T08": 95,
+        "T09": 80
+      },
+      "seconds_candidate": 2489,
+      "seconds_owner": 2867,
+      "tokens": null,
+      "cost_usd": null,
+      "requests": null,
+      "role_suggestions": [
+        "Scoped Python backend builder",
+        "Web markup hardening",
+        "Repository analysis and code review (human confirmation)",
+        "Test writing with reference-fix checks"
+      ],
+      "restrictions": [
+        "Not autonomous DevOps: permissions read-all and Node22 job runtime not pinned",
+        "Not production key-rotation approver: PARTIAL session claim and rollback caveat",
+        "Single public run; significant timing gap and no token telemetry"
+      ],
+      "known_issues": [
+        "T04 optional value omitted input yields explicit undefined property",
+        "T04 absent deleted field accepted",
+        "T05 POSIX colon filename rejected",
+        "T06 permissions read-all, no setup-node 22",
+        "T09 unsupported PARTIAL session status",
+        "T09 suggests re-adding old potentially compromised key"
+      ]
+    }
+  ],
+  "prior_results_reference": "results/reviews/2026-11-12-first-three-manual-v1.json",
+  "operations_note": "Both original evidence PRs merged unchanged. Manual scores published as separate reviewer artifacts, preserving candidate ownership and historical scoring.",
+  "caveats": [
+    "No independent provider-side proof of exact serving model or token usage",
+    "T06 CI build and Docker runtime untested",
+    "No real mobile device, desktop GUI or browser screen reader tested",
+    "Single public structured task set susceptible to memorization and prompt overfitting",
+    "User-observed and candidate-reported elapsed durations differ; no normalized host-side timers"
+  ]
+}
