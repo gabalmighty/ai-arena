@@ -1,0 +1,28 @@
+name: Build
+
+# Test-only CI. No deployment, no publishing, no environment secrets.
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Major tags retained: no real commit SHA could be verified offline,
+      # so action immutability is UNVERIFIED (see notes.md).
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies (locked, production-manifest integrity)
+        run: npm ci
+
+      - name: Run tests
+        run: npm test

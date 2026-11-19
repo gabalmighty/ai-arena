@@ -1,0 +1,124 @@
+﻿TAP version 13
+# Subtest: normal local cases below the free-shipping threshold
+ok 1 - normal local cases below the free-shipping threshold
+  ---
+  duration_ms: 0.6891
+  type: 'test'
+  ...
+# Subtest: local free-shipping boundary is inclusive at 5000
+not ok 2 - local free-shipping boundary is inclusive at 5000
+  ---
+  duration_ms: 0.6727
+  type: 'test'
+  location: '<T08>\\shipping.test.js:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    500 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 500
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<T08>\shipping.test.js:15:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: normal international cases below the threshold
+ok 3 - normal international cases below the threshold
+  ---
+  duration_ms: 0.0916
+  type: 'test'
+  ...
+# Subtest: international free-shipping boundary is inclusive at 10000
+not ok 4 - international free-shipping boundary is inclusive at 10000
+  ---
+  duration_ms: 0.2307
+  type: 'test'
+  location: '<T08>\\shipping.test.js:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1000 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1000
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<T08>\shipping.test.js:25:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal values throw
+not ok 5 - invalid subtotal values throw
+  ---
+  duration_ms: 0.2671
+  type: 'test'
+  location: '<T08>\\shipping.test.js:29:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception: expected rejection for -1'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<T08>\shipping.test.js:31:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region values throw
+not ok 6 - invalid region values throw
+  ---
+  duration_ms: 0.1277
+  type: 'test'
+  location: '<T08>\\shipping.test.js:36:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception: expected rejection for region LOCAL'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<T08>\shipping.test.js:38:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: function is side-effect free for repeated identical calls
+ok 7 - function is side-effect free for repeated identical calls
+  ---
+  duration_ms: 0.1879
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 3
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71.8509
+
+
