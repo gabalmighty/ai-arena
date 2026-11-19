@@ -149,12 +149,13 @@
     "The run finished at 464 s, well inside the 45-60 min target; no time padding was added and no task was skipped.",
     "Absolute local paths in tasks/T08/test-run.log were redacted after capture; all test counts and outputs are otherwise unmodified.",
     "No subagents, external LLM advisors, model switching, or role changes were used.",
-    "submission.git_commit is null in the artifact commit because a file cannot contain the hash of the commit that contains it; the verified commit SHA and PR URL are reported in the final answer and in a follow-up metadata commit if one is made."
+    "git_commit records the primary artifact commit a5708b0cf4f0dd3f92c82e4af6cd868a0a85315e; a file cannot contain the hash of the commit that contains it, so the final metadata-update commit hash is necessarily different.",
+    "First commit attempt failed because the repository had no configured git user identity; the initial branch push therefore created the remote branch at the base commit only. The problem was fixed with a command-scoped synthetic identity (no persistent config change) and re-pushed as a fast-forward; no force-push or history rewrite was used."
   ],
   "submission": {
     "git_branch": "arena/manual-20261119T103630Z__opencode-go_hy4-flash-free",
-    "git_commit": null,
-    "pr_url": null,
-    "pushed": false
+    "git_commit": "a5708b0cf4f0dd3f92c82e4af6cd868a0a85315e",
+    "pr_url": "https://github.com/gabalmighty/ai-arena/pull/3",
+    "pushed": true
   }
 }

@@ -129,3 +129,11 @@ All of the above are self-assessments and must not be read as a verdict.
 - No usage telemetry → token metrics `null`, not estimated.
 - Git push authorization not known in advance → determined by the actual push attempt (see `metrics.json` submission field).
 - **Out-of-scope check:** `git status --porcelain` before staging showed only `?? results/manual/20261119T103630Z__opencode-go_hy4-flash-free/`. No existing README, runner, evaluator, challenge, historical result, workflow, or leaderboard file was modified. No keys, personal paths, or raw transcripts are included; absolute local paths in one captured TAP log were redacted.
+
+## Submission
+
+- **Branch:** `arena/manual-20261119T103630Z__opencode-go_hy4-flash-free`
+- **Primary artifact commit:** `a5708b0cf4f0dd3f92c82e4af6cd868a0a85315e`
+- **Branch URL:** https://github.com/gabalmighty/ai-arena/tree/arena/manual-20261119T103630Z__opencode-go_hy4-flash-free
+- **Pull request (targeting `main`, not merged):** https://github.com/gabalmighty/ai-arena/pull/3
+- **Unexpected effect:** the first `git commit` attempt failed because the clone had no configured user identity; the accompanying push created the remote branch at the base commit only. The identity was supplied per-command with a clearly synthetic value (no global/local config change), the real commit was created and pushed as a fast-forward, and no force-push, history rewrite, or leaderboard change occurred.
