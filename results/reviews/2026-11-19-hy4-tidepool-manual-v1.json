@@ -48,7 +48,7 @@
       "devops": "Least-privilege contract violated by permissions:read-all; no setup-node step for Node22. actions/checkout SHA is confirmed to be official v4 ref. No Docker build/CI run",
       "security_review": "All four seeded defects, with P2 HMAC severity downplayed and speculative claim that online HMAC prefix guessing is trivial",
       "decision": "Incorrect PARTIAL label for unverified session preservation; old signing key reinstatement needs compromise-aware authorization and security review",
-      "metric_quality": "Only 328 seconds of task intervals documented out of 2,489 seconds total. Unattributed time is not interpreted as model reasoning or waiting"
+      "metric_quality": "Only 327 seconds of task intervals documented out of 2,489 seconds total. Unattributed time is not interpreted as model reasoning or waiting"
     }
   },
   "results": [
