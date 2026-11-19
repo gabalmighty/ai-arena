@@ -1,0 +1,19 @@
+# Build/cache/generated artifacts (excluded from the image).
+.git
+.env*
+*.env
+secrets
+secrets.json
+*.secret
+node_modules
+build
+dist
+coverage
+out
+results
+.npm
+logs
+*.log
+.DS_Store
+Thumbs.db
+*.tmp
