@@ -1,0 +1,15 @@
+name: Build
+
+on: [push]
+
+permissions: read-all
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # actions/checkout v4 pinned to the commit SHA verified via the GitHub
+      # API on 2026-11-19: 11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: npm ci
+      - run: npm test

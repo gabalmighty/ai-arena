@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "lines": "03",
+      "kind": "unauthenticated_admin_header",
+      "severity": "P1",
+      "evidence": "Line 03 returns true when the client-controlled header req.headers['x-admin'] equals 'yes'; nothing validates the header against an authenticated claim."
+    },
+    {
+      "lines": "10-12",
+      "kind": "sql_injection",
+      "severity": "P1",
+      "evidence": "invoiceQuery (lines 10-12) builds the SQL by string concatenation of tenantId and invoiceId with no parameterization, escaping or input validation."
+    },
+    {
+      "lines": "05-08",
+      "kind": "weak_webhook_signature",
+      "severity": "P2",
+      "evidence": "webhookOk (lines 05-08) compares only signature.slice(0, 8) of the expected HMAC-SHA256 digest with startsWith — 32 bits of entropy, non-constant-time comparison."
+    },
+    {
+      "lines": "14-16",
+      "kind": "rate_limit_off_by_one",
+      "severity": "P2",
+      "evidence": "overLimit (lines 14-16) returns requestCount > 6; with the common convention that requestCount includes the current request, the sixth request is not blocked (6 > 6 is false)."
+    }
+  ]
+}
