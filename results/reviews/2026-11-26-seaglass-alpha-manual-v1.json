@@ -1,0 +1,147 @@
+{
+  "schema": "ai-arena/manual-gatekeeper-v1",
+  "review_id": "2026-11-26-seaglass-alpha-manual-v1",
+  "reviewed_at_utc": "2026-11-26T15:35:51.453Z",
+  "reviewed_at_manila": "2026-11-26T23:35:51.453+08:00",
+  "prompt_version": "MANUAL-V1",
+  "benchmark_base_sha": "36e35c8dc794f4a8e3cd36345b939aba2067a4a7",
+  "method": "Equal-weight diagnostic reviewer ratings consistent with previous MANUAL-V1 reviews; static review of all nine tasks; separately authored tests on six byte-identical Git blob SHA-matched source files in a local scratch directory. No provider rerun. No frozen shared oracle across historical runs.",
+  "identity": {
+    "owner_reported_model": "Seaglass Alpha",
+    "owner_reported_provider": "OpenCode Go",
+    "model_route_observed": "MODEL_UNVERIFIED",
+    "model_route_requested": null,
+    "provider_observed": null,
+    "exact_route": null,
+    "provider_attested": false,
+    "attribution_status": "OWNER_REPORTED_ONLY",
+    "note": "Candidate explicitly withheld identity and recorded MODEL_UNVERIFIED; owner identifies this PR as Seaglass Alpha. Score applies to artifacts; model attribution/ranking provisional."
+  },
+  "environment": {
+    "reviewer": "Linux, Python 3.13.5, Node 22.16.0",
+    "candidate_reported": "Windows NT 10.0.26300.0; Python 3.13.1 via py; Node v22.16.0; OpenCode v2.4.2"
+  },
+  "source_checksums": {
+    "ledger": "00bd74e6f6da7084c6d33400f894858950800c49",
+    "profile": "27e92daf67b3a3fea99169dc43da8d98c2da3a4f",
+    "sync": "28c468da4bc1cca846641fd24e54fefefa0489d8",
+    "file_guard": "bdb3af3edc4f736dcf300802d905cd9770bc1477",
+    "shipping_subject": "fb47f39e0b61d1f97be828484845f6583fb1671a",
+    "shipping_test": "8d814b5862385d74ffb66f4b758be6c4b50e1bbb"
+  },
+  "results": [
+    {
+      "model": "Seaglass Alpha",
+      "model_route": "MODEL_UNVERIFIED",
+      "provider_group": "opencode-go (owner-reported)",
+      "pr": 6,
+      "reviewed_head_sha": "98e48976f2e9528fc0cbb19d50d16c353766334a",
+      "merge_commit_sha": "0453abdae533a7a8e3f05355fb27280c9e542d4f",
+      "run_id": "20261126T144218Z__model-unverified",
+      "finished_manila": "2026-11-26T23:22:59+08:00",
+      "completed_tasks": 9,
+      "expected_tasks": 9,
+      "quality_score": 95.6,
+      "verdict": "PASS WITH WARNINGS",
+      "task_scores": {
+        "T01": 95,
+        "T02": 100,
+        "T03": 95,
+        "T04": 100,
+        "T05": 95,
+        "T06": 90,
+        "T07": 90,
+        "T08": 95,
+        "T09": 100
+      },
+      "seconds_candidate": 2441,
+      "seconds_owner": null,
+      "tokens": null,
+      "cost_usd": null,
+      "requests": null,
+      "role_suggestions": [
+        "Supervised scoped Python backend implementation",
+        "Mobile offline sync logic",
+        "Test engineering with independent reference controls",
+        "Read-only analysis and planning"
+      ],
+      "restrictions": [
+        "Exact model route unverified; no autonomous production or final security Gatekeeper approval",
+        "Web empty-field acceptance checks, portability checks and security review required",
+        "Static DevOps only"
+      ],
+      "known_issues": [
+        "T01 wrongly states local selftest requires Docker; actual selftest stages fixtures and calls checked_result locally.",
+        "T03 empty strings produce blank heading/role rather than Unknown; absence contract is ambiguous for empty strings, but empty heading is an accessibility quality edge.",
+        "T05 valid POSIX a:b.txt rejected by cross-platform drive-letter guard; no demonstrated containment escape.",
+        "T07 all four real defects found, but offline brute force and remote timing-oracle claims overstate demonstrated exploitability; severity contextual.",
+        "T08 candidate did not run corrected control; reviewer independently did. Test assertions constrain error wording.",
+        "Exact model/provider route withheld; owner attribution only."
+      ]
+    }
+  ],
+  "behavioral_checks": {
+    "T02": {
+      "passed": 12,
+      "total": 12
+    },
+    "T03": {
+      "passed": 9,
+      "total": 10,
+      "failed": "Empty name/role gives blank markup, not Unknown; reviewer quality edge, empty vs absent not explicitly defined."
+    },
+    "T04": {
+      "passed": 12,
+      "total": 12,
+      "notes": "Accepts optional value omission and rejects absent deleted; preserves ordering and input immutability; clone of upload values is additional design strength."
+    },
+    "T05": {
+      "passed": 16,
+      "total": 17,
+      "failed": "POSIX a:b.txt valid in-root file rejected; both real symlink cases passed; ..notes.txt accepted."
+    },
+    "T08": {
+      "buggy": {
+        "passed": 11,
+        "failed": 18,
+        "total": 29,
+        "exit": 1
+      },
+      "correct_reference": {
+        "passed": 29,
+        "failed": 0,
+        "total": 29,
+        "exit": 0
+      },
+      "notes": "Reference uses meaningful Error naming subtotal/region; not proof of accepting every valid error wording. Original subject preserved."
+    }
+  },
+  "candidate_logs": {
+    "T02": "9/9 repaired, 4/9 starter; submitted logs inspected",
+    "T03": "5/5 repaired, 1/5 starter; submitted logs inspected",
+    "T04": "8/8 submitted log inspected",
+    "T05": "7/7 reported, Windows junction fallback; no separate log",
+    "T08": "11/29 pass, 18/29 fail; log matches independent rerun"
+  },
+  "static_review": {
+    "T01": "Correct five mappings, limitations, but selftest Docker dependency inaccurate.",
+    "T06": "Node 22 Debian slim, npm ci --omit=dev, non-root, contents: read, persist-credentials false, explicit Node 22 setup, no deployment; action/tag immutability unverified.",
+    "T07": "Four unique true findings; eight hex chars correctly identified as 32 bits; no demonstrated offline oracle or remote timing exploit; severity judgment contextual.",
+    "T09": "All actions BLOCKED; separates stateless and opaque sessions, bounded overlap and compromise exception; rollback must retain compromise exception; injection refused."
+  },
+  "publication": {
+    "files_added": 27,
+    "all_in_run_folder": true,
+    "obvious_secret_pattern_matches": 0,
+    "pr_created_utc": "2026-11-26T15:28:20Z",
+    "note": "Dedicated branch and PR exist; candidate reports successful push. No out-of-scope changed path. Regex scan not comprehensive; six test logs reviewed for counts."
+  },
+  "caveats": [
+    "No provider identity, token, request, cost or fallback attestation.",
+    "No browser/device/GUI/Docker/CI/deployment tested.",
+    "Independent tests run on SHA-matched source copies; other candidate suites not independently rerun verbatim.",
+    "Time 40m41s is candidate-reported engineering window; publication follows; owner stopwatch absent.",
+    "Public tasks and prior answers accessible at baseline; contamination cannot be excluded; no evidence of copying.",
+    "Score is provisional; no RECOMMENDED | PASSED for single public run."
+  ]
+}
