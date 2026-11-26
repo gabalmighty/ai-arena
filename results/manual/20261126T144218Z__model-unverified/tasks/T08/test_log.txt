@@ -1,0 +1,464 @@
+﻿TAP version 13
+# Subtest: local threshold: 4999 -> 500
+ok 1 - local threshold: 4999 -> 500
+  ---
+  duration_ms: 1.6214
+  type: 'test'
+  ...
+# Subtest: local threshold: 5000 -> 0 (from 5000 onward)
+not ok 2 - local threshold: 5000 -> 0 (from 5000 onward)
+  ---
+  duration_ms: 0.6738
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    500 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 500
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:17:68)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: local threshold: 5001 -> 0
+ok 3 - local threshold: 5001 -> 0
+  ---
+  duration_ms: 0.0868
+  type: 'test'
+  ...
+# Subtest: international threshold: 9999 -> 1000
+ok 4 - international threshold: 9999 -> 1000
+  ---
+  duration_ms: 0.0816
+  type: 'test'
+  ...
+# Subtest: international threshold: 10000 -> 0 (from 10000 onward)
+not ok 5 - international threshold: 10000 -> 0 (from 10000 onward)
+  ---
+  duration_ms: 0.2182
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1000 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1000
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:22:78)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: international threshold: 10001 -> 0
+ok 6 - international threshold: 10001 -> 0
+  ---
+  duration_ms: 0.086
+  type: 'test'
+  ...
+# Subtest: local normal: 0 -> 500
+ok 7 - local normal: 0 -> 500
+  ---
+  duration_ms: 0.0664
+  type: 'test'
+  ...
+# Subtest: local normal: small subtotal -> 500
+ok 8 - local normal: small subtotal -> 500
+  ---
+  duration_ms: 0.1128
+  type: 'test'
+  ...
+# Subtest: local normal: large subtotal -> 0
+ok 9 - local normal: large subtotal -> 0
+  ---
+  duration_ms: 0.2814
+  type: 'test'
+  ...
+# Subtest: international normal: 0 -> 1000
+ok 10 - international normal: 0 -> 1000
+  ---
+  duration_ms: 0.4316
+  type: 'test'
+  ...
+# Subtest: international normal: small subtotal -> 1000
+ok 11 - international normal: small subtotal -> 1000
+  ---
+  duration_ms: 0.145
+  type: 'test'
+  ...
+# Subtest: international normal: large subtotal -> 0
+ok 12 - international normal: large subtotal -> 0
+  ---
+  duration_ms: 0.076
+  type: 'test'
+  ...
+# Subtest: invalid subtotal rejected: negative
+not ok 13 - invalid subtotal rejected: negative
+  ---
+  duration_ms: 0.2565
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:34:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:34:58)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: -0? (nonnegative ok) vs negative
+not ok 14 - invalid subtotal rejected: -0? (nonnegative ok) vs negative
+  ---
+  duration_ms: 0.1092
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:35:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:35:82)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: non-integer 1.5
+not ok 15 - invalid subtotal rejected: non-integer 1.5
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:36:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:36:65)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: NaN
+not ok 16 - invalid subtotal rejected: NaN
+  ---
+  duration_ms: 0.0777
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:37:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:37:53)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: Infinity
+not ok 17 - invalid subtotal rejected: Infinity
+  ---
+  duration_ms: 0.0702
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:38:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:38:58)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: string
+not ok 18 - invalid subtotal rejected: string
+  ---
+  duration_ms: 0.0659
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:39:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:39:56)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: boolean true (bool is not int)
+not ok 19 - invalid subtotal rejected: boolean true (bool is not int)
+  ---
+  duration_ms: 0.1678
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:40:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:40:80)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: boolean false
+not ok 20 - invalid subtotal rejected: boolean false
+  ---
+  duration_ms: 0.1013
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:41:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:41:63)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: null
+not ok 21 - invalid subtotal rejected: null
+  ---
+  duration_ms: 0.0788
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:42:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:42:54)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid subtotal rejected: undefined
+not ok 22 - invalid subtotal rejected: undefined
+  ---
+  duration_ms: 0.7163
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:43:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:43:59)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: unknown
+not ok 23 - invalid region rejected: unknown
+  ---
+  duration_ms: 0.1009
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:46:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:46:55)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: case
+not ok 24 - invalid region rejected: case
+  ---
+  duration_ms: 0.0782
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:47:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:47:52)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: empty
+not ok 25 - invalid region rejected: empty
+  ---
+  duration_ms: 0.0662
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:48:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:48:53)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: null
+not ok 26 - invalid region rejected: null
+  ---
+  duration_ms: 0.0652
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:49:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:49:52)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: undefined
+not ok 27 - invalid region rejected: undefined
+  ---
+  duration_ms: 0.1237
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:50:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:50:57)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid region rejected: whitespace
+not ok 28 - invalid region rejected: whitespace
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  location: '<repo>\\results\\manual\\20261126T144218Z__model-unverified\\tasks\\T08\\shipping.test.js:51:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T08\shipping.test.js:51:58)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: no side effects: repeated calls same result; inputs unchanged
+ok 29 - no side effects: repeated calls same result; inputs unchanged
+  ---
+  duration_ms: 0.0583
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 11
+# fail 18
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90.4847

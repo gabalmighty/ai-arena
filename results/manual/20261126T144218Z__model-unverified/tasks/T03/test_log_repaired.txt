@@ -1,0 +1,40 @@
+﻿TAP version 13
+# Subtest: user-controlled name/role are HTML-text escaped; no user HTML becomes markup
+ok 1 - user-controlled name/role are HTML-text escaped; no user HTML becomes markup
+  ---
+  duration_ms: 0.8557
+  type: 'test'
+  ...
+# Subtest: special characters & < > double-quote apostrophe are encoded
+ok 2 - special characters & < > double-quote apostrophe are encoded
+  ---
+  duration_ms: 0.171
+  type: 'test'
+  ...
+# Subtest: absent name/role fall back to "Unknown"
+ok 3 - absent name/role fall back to "Unknown"
+  ---
+  duration_ms: 0.1437
+  type: 'test'
+  ...
+# Subtest: structure: section accessible label, heading, visible role label, button semantics
+ok 4 - structure: section accessible label, heading, visible role label, button semantics
+  ---
+  duration_ms: 0.1933
+  type: 'test'
+  ...
+# Subtest: does not mutate its input
+ok 5 - does not mutate its input
+  ---
+  duration_ms: 0.6472
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68.3908

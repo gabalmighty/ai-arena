@@ -1,0 +1,58 @@
+﻿TAP version 13
+# Subtest: empty queue -> no uploads, no conflicts; empty server ok
+ok 1 - empty queue -> no uploads, no conflicts; empty server ok
+  ---
+  duration_ms: 1.2488
+  type: 'test'
+  ...
+# Subtest: dedup order: last pending op per id wins; order of LAST occurrences, not first
+ok 2 - dedup order: last pending op per id wins; order of LAST occurrences, not first
+  ---
+  duration_ms: 0.3395
+  type: 'test'
+  ...
+# Subtest: version conflict: baseVersion != current server version -> conflict, no upload
+ok 3 - version conflict: baseVersion != current server version -> conflict, no upload
+  ---
+  duration_ms: 0.1523
+  type: 'test'
+  ...
+# Subtest: deleted server record: current version still counts; stale resurrection is a conflict
+ok 4 - deleted server record: current version still counts; stale resurrection is a conflict
+  ---
+  duration_ms: 0.2306
+  type: 'test'
+  ...
+# Subtest: new item: absent server -> current version 0; baseVersion 0 uploads
+ok 5 - new item: absent server -> current version 0; baseVersion 0 uploads
+  ---
+  duration_ms: 0.6909
+  type: 'test'
+  ...
+# Subtest: delete uploads omit value; upsert without value has no value key
+ok 6 - delete uploads omit value; upsert without value has no value key
+  ---
+  duration_ms: 0.1563
+  type: 'test'
+  ...
+# Subtest: immutability: inputs are not changed; output value is a clone
+ok 7 - immutability: inputs are not changed; output value is a clone
+  ---
+  duration_ms: 0.2318
+  type: 'test'
+  ...
+# Subtest: malformed records fail explicitly with meaningful error (no silent drop)
+ok 8 - malformed records fail explicitly with meaningful error (no silent drop)
+  ---
+  duration_ms: 0.6405
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68.1031

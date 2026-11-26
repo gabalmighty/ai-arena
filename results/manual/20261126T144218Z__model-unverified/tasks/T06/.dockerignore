@@ -1,0 +1,57 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Secrets / credentials (never bake into image or build context)
+.env
+.env.*
+*.env
+.env.local
+.env.*.local
+secrets
+secrets/
+*.secret
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.npmrc
+.aws
+.ssh
+
+# Dependencies (reinstalled deterministically with npm ci)
+node_modules
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local build / cache / editor
+dist
+build
+out
+coverage
+.cache
+.parcel-cache
+.next
+.nuxt
+.turbo
+.eslintcache
+*.tsbuildinfo
+.tmp
+tmp
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Generated results / artifacts from this benchmark and similar tooling
+results
+results/**
+arena-results
+*.log
+
+# CI
+.github
