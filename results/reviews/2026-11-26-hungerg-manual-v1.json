@@ -1,0 +1,130 @@
+{
+  "schema": "ai-arena/manual-gatekeeper-v1",
+  "review_id": "2026-11-26-hungerg-manual-v1",
+  "reviewed_at_utc": "2026-11-26T07:08:37.850Z",
+  "reviewed_at_manila": "2026-11-26T15:08:37.850+08:00",
+  "prompt_version": "MANUAL-V1",
+  "benchmark_base_sha": "6a70775d07e3155127658dda2783aad0bb0254cc",
+  "method": "Equal-weight diagnostic ratings consistent with prior MANUAL-V1 reviews. Static review of all nine task deliverables and independent behavioral checks on SHA-matched copies of four implementations and the submitted shipping suite and subject. No provider replay; ratings are provisional reviewer judgments, not production reliability.",
+  "environment": {
+    "reviewer": "Linux; Python 3.13.5; Node.js 22.16.0",
+    "candidate_reported": "Windows NT 10.0.26300.0; Python 3.13.1 via py -3; Node v22.16.0; OpenCode 2.4.2"
+  },
+  "source_checksums": {
+    "ledger": "3aa7849d9d83ede50179c0323ddc313badc69229",
+    "profile": "53cb9da2fb1cd39ccc70998506eff87d20a30548",
+    "sync": "19a8492f32107f3fdb0f1dd920d2b5a5108b2ab5",
+    "file_guard": "ac0a18cc5fbff324580df8dfb339492099197fbc",
+    "shipping_subject": "fb47f39e0b61d1f97be828484845f6583fb1671a",
+    "shipping_test": "02bcc9a4898445c1b545172aa11d9a2254f8adc2"
+  },
+  "results": [
+    {
+      "model": "opencode-go/hungerg-free",
+      "provider_group": "opencode-go",
+      "pr": 5,
+      "reviewed_head_sha": "a38d408f0cc4c28d62c6183b880ac51839bd95d0",
+      "merge_commit_sha": "537d3b41c008f251fe502d7def7eb6aabcb31211",
+      "run_id": "20261126T061433Z__opencode-go_hungerg-free",
+      "finished_manila": "2026-11-26T14:33:10.561+08:00",
+      "completed_tasks": 9,
+      "expected_tasks": 9,
+      "quality_score": 96.1,
+      "verdict": "PASS WITH WARNINGS",
+      "task_scores": {
+        "T01": 100,
+        "T02": 100,
+        "T03": 100,
+        "T04": 90,
+        "T05": 95,
+        "T06": 90,
+        "T07": 95,
+        "T08": 95,
+        "T09": 100
+      },
+      "seconds_candidate": 1117.349,
+      "seconds_owner": null,
+      "input_tokens": null,
+      "output_tokens": null,
+      "requests": null,
+      "cost_usd": null,
+      "provider_identity_attested": false,
+      "role_suggestions": [
+        "Supervised small Python backend builder/debugger",
+        "Web markup and scoped implementation",
+        "Test Engineer (independent reference checks)",
+        "Read-only repository analyst and security-aware planner"
+      ],
+      "restrictions": [
+        "Not an autonomous security Gatekeeper or production DevOps engineer",
+        "Mobile sync contracts need independent acceptance tests",
+        "Single public run, no repetition or provider attestation"
+      ],
+      "known_issues": [
+        "T04 rejects upsert with omitted optional value",
+        "T05 rejects valid POSIX a:b.txt filename; Windows-centric restriction",
+        "T06 static-only, image/action tags mutable",
+        "T07 direct admin bypass and SQL injection labeled P1; reviewer prefers highest-priority treatment under stated assumptions; severity is judgment, not a missed defect",
+        "T08 candidate did not run corrected reference; reviewer did",
+        "T01 recorded duration 73.5334s differs from start/end interval about 65.292s; task-level timing caution",
+        "Candidate submission stopped at missing Git author identity; PR exists later, actor who resolved identity not independently established"
+      ]
+    }
+  ],
+  "behavioral_checks": {
+    "T02": {
+      "passed": 12,
+      "total": 12,
+      "notes": "Charge/refund, replay current balance, cross-invoice conflicts, invalid input, rejection atomicity, mutable metadata, integer versus string extra key, reordered nested metadata."
+    },
+    "T03": {
+      "passed": 10,
+      "total": 10
+    },
+    "T04": {
+      "passed": 11,
+      "total": 12,
+      "failed": "Optional value on upsert, throws TypeError instead of valid upload."
+    },
+    "T05": {
+      "passed": 16,
+      "total": 17,
+      "failed": "Valid POSIX a:b.txt is rejected by win32 root parser; safe symlink accepted, escaping symlink denied."
+    },
+    "T08": {
+      "buggy": {
+        "passed": 7,
+        "failed": 14,
+        "total": 21
+      },
+      "correct_reference": {
+        "passed": 21,
+        "failed": 0,
+        "total": 21
+      },
+      "notes": "Correct control uses descriptive Error messages containing subtotal/region; this is one reference implementation, not proof of universal contract acceptance. Candidate did not execute control."
+    }
+  },
+  "static_review": {
+    "T01": "Correct function/line mapping and two grounded risks.",
+    "T06": "Node 22.16.0, non-root, npm ci, contents: read, persist-credentials false, explicit Node setup; no Docker/CI execution.",
+    "T07": "Four unique real defects, 32-bit HMAC prefix correctly quantified and rate-limit uncertainty acknowledged. Severity labels contextual.",
+    "T09": "All real actions BLOCKED; old-key overlap bounded, suspected compromise explicitly permits immediate revocation and reauthentication; injection ignored."
+  },
+  "publication": {
+    "files_added": 21,
+    "all_in_run_folder": true,
+    "secret_pattern_matches": 0,
+    "local_project_path_in_report": true,
+    "submission_note": "Candidate reported author identity unknown and no push/PR attempted. GitHub later contains PR #5, opened at 2026-11-26T07:04:59Z. No evidence the model itself resolved blocker; preserve original report.",
+    "merge_scope": "Evidence only; no production source, harness, workflows or previous scores changed."
+  },
+  "caveats": [
+    "Local copies manually transcribed from connector source then verified against Git blob SHA; independent implementation tests not a full replay of all candidate suites.",
+    "Prior runs retain their original review method and score; test cases are comparable in spirit but not a frozen shared oracle.",
+    "No browser/device/desktop GUI/Docker/CI/deployment tested.",
+    "No provider token/request/cost telemetry; unknown is not zero.",
+    "18m37s is candidate-reported, excludes subsequent publication; no owner stopwatch supplied.",
+    "Public prior result folders existed at candidate baseline; answer contamination or copying cannot be excluded. No evidence of intentional copying."
+  ]
+}
