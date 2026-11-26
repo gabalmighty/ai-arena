@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "lines": "03",
+      "kind": "authorization_header_spoof",
+      "severity": "P1",
+      "evidence": "The x-admin request header alone makes isAdmin true, bypassing authenticated admin authorization."
+    },
+    {
+      "lines": "07-08",
+      "kind": "truncated_hmac_verification",
+      "severity": "P1",
+      "evidence": "Signature verification accepts only an eight-hex-character prefix instead of the full HMAC digest."
+    },
+    {
+      "lines": "11-12",
+      "kind": "sql_injection",
+      "severity": "P1",
+      "evidence": "tenantId and invoiceId are concatenated into SQL literals without parameter binding."
+    },
+    {
+      "lines": "14-15",
+      "kind": "off_by_one_rate_limit",
+      "severity": "P2",
+      "evidence": "requestCount > 6 allows the sixth request even though the requirement blocks it."
+    }
+  ]
+}
