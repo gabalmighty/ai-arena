@@ -1,10 +1,10 @@
 {
   "schema": "ai-arena/manual-leaderboard-v1",
-  "generated_at_utc": "2026-11-19T11:43:02.035Z",
-  "generated_at_manila": "2026-11-19T19:43:02.035+08:00",
+  "generated_at_utc": "2026-11-26T07:09:12.893Z",
+  "generated_at_manila": "2026-11-26T15:09:12.893+08:00",
   "benchmark": "MANUAL-V1",
   "review_policy": "Full-coverage single-run PASS WITH WARNINGS >=70 and no executed critical scope violation; RECOMMENDED | PASSED requires independent repetitions and stronger role evidence; INCOMPLETE means missing required coverage. Ratings are diagnostic, not probabilities.",
-  "compare_warning": "Do not compare incomplete 8/9 models directly with 9/9 means. Results from different days/hosts and differing tools do not establish intrinsic model rank.",
+  "compare_warning": "Do not compare incomplete 8/9 models directly with 9/9 means. Different host environments, dates and reviewer test cases limit comparisons; public tasks are not a frozen common oracle. Historical results are not proof of current availability.",
   "rows": [
     {
       "model_route": "openrouter/baidu/ernie-5.5-flash-preview:free",
@@ -34,6 +34,38 @@
       "rank": 1
     },
     {
+      "model_route": "opencode-go/hungerg-free",
+      "verdict": "PASS WITH WARNINGS",
+      "quality_score": 96.1,
+      "coverage": "9/9",
+      "scored_tasks": 9,
+      "expected_tasks": 9,
+      "model_finished_manila": "2026-11-26T14:33:10.561+08:00",
+      "reported_duration_seconds": 1117.349,
+      "owner_observed_duration_seconds": null,
+      "run_id": "20261126T061433Z__opencode-go_hungerg-free",
+      "review_date_manila": "2026-11-26T15:08:37.850+08:00",
+      "source_url": "https://github.com/gabalmighty/ai-arena/pull/5",
+      "review_url": "docs/reviews/2026-11-26-hungerg-manual-v1.md",
+      "role_suggestions": [
+        "Supervised small Python backend builder/debugger",
+        "Web markup and scoped implementation",
+        "Test Engineer (independent reference checks)",
+        "Read-only repository analyst and security-aware planner"
+      ],
+      "limitations": [
+        "T04 rejects upsert with omitted optional value",
+        "T05 rejects valid POSIX a:b.txt filename; Windows-centric restriction",
+        "T06 static-only, image/action tags mutable",
+        "T07 direct admin bypass and SQL injection labeled P1; reviewer prefers highest-priority treatment under stated assumptions; severity is judgment, not a missed defect",
+        "T08 candidate did not run corrected reference; reviewer did",
+        "T01 recorded duration 73.5334s differs from start/end interval about 65.292s; task-level timing caution",
+        "Candidate submission stopped at missing Git author identity; PR exists later, actor who resolved identity not independently established"
+      ],
+      "completeness": true,
+      "rank": 2
+    },
+    {
       "model_route": "opencode-go/hy4-flash-free",
       "verdict": "PASS WITH WARNINGS",
       "quality_score": 95.6,
@@ -60,7 +92,7 @@
         "T07/T08 task timestamps overlap"
       ],
       "completeness": true,
-      "rank": 2
+      "rank": 3
     },
     {
       "model_route": "opencode/tidepool-alpha-free",
@@ -91,7 +123,7 @@
         "T09 suggests re-adding old potentially compromised key"
       ],
       "completeness": true,
-      "rank": 3
+      "rank": 4
     },
     {
       "model_route": "opencode-go/iceman-contributor-free",
@@ -150,6 +182,7 @@
   ],
   "source_reviews": [
     "2026-11-12-first-three-manual-v1",
-    "2026-11-19-hy4-tidepool-manual-v1"
+    "2026-11-19-hy4-tidepool-manual-v1",
+    "2026-11-26-hungerg-manual-v1"
   ]
 }
