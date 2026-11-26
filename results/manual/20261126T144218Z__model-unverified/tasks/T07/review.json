@@ -1,0 +1,8 @@
+{
+  "findings": [
+    {"lines": "03", "kind": "auth_bypass_via_header", "severity": "P0", "evidence": "isAdmin returns true if req.headers['x-admin']==='yes', letting any unauthenticated caller claim admin, violating only-authenticated-admins; req.user role branch only helps if req.user is set by trusted auth."},
+    {"lines": "05-09", "kind": "weak_signature_verification", "severity": "P0", "evidence": "webhookOk compares only signature.startsWith(expected.slice(0,8)) (first 4 bytes of HMAC-SHA256) with non-constant-time startsWith instead of full-length timing-safe equality, so signatures are not fully verified."},
+    {"lines": "10-13", "kind": "sql_injection", "severity": "P0", "evidence": "invoiceQuery concatenates tenantId and invoiceId into a SQL string instead of parameterized/bound parameters, enabling SQL injection and tenant-isolation break."},
+    {"lines": "14-16", "kind": "off_by_one_rate_limit", "severity": "P1", "evidence": "overLimit uses requestCount > 6 so overLimit(6) is false and the sixth request in a window is not blocked; requirement is to block the sixth, i.e. requestCount >= 6."}
+  ]
+}

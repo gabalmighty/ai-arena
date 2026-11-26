@@ -1,0 +1,26 @@
+﻿py : test_charge_increases_balance_and_returns_balance 
+(test_ledger.LedgerTests.test_charge_increases_balance_and_returns_balance) ... ok
+At line:1 char:108
++ ... sks\T02'; Set-Location $d; py -m unittest test_ledger -v 2>&1 | Tee-O ...
++                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_charge_inc...balance) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_conflicting_replay_same_id_raises_and_preserves_state 
+(test_ledger.LedgerTests.test_conflicting_replay_same_id_raises_and_preserves_state) ... ok
+test_duplicate_identical_replay_is_idempotent (test_ledger.LedgerTests.test_duplicate_identical_replay_is_idempotent) 
+... ok
+test_input_event_not_mutated_and_registry_unaffected_by_caller_mutation 
+(test_ledger.LedgerTests.test_input_event_not_mutated_and_registry_unaffected_by_caller_mutation) ... ok
+test_invalid_amount_and_type_rejected_without_state_change 
+(test_ledger.LedgerTests.test_invalid_amount_and_type_rejected_without_state_change) ... ok
+test_refund_basic_and_exact_amount (test_ledger.LedgerTests.test_refund_basic_and_exact_amount) ... ok
+test_refund_overdraw_rejected_and_never_below_zero 
+(test_ledger.LedgerTests.test_refund_overdraw_rejected_and_never_below_zero) ... ok
+test_state_immutability_after_rejection (test_ledger.LedgerTests.test_state_immutability_after_rejection) ... ok
+test_two_invoices_are_independent (test_ledger.LedgerTests.test_two_invoices_are_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK

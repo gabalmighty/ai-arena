@@ -1,0 +1,25 @@
+# Non-deploying test-only CI. NOT a real .github/workflows file in this benchmark.
+# Least privilege; no curl|shell; no write credentials; no secrets.
+name: Build
+
+on: [push]
+
+# Least privilege: read-only repository contents. Nothing else granted.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned documented major tag. SHA-pinning would be stronger, but no real action
+      # SHA could be verified OFFLINE; immutability of @v4 is UNVERIFIED.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false   # don't leave git token for later steps
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'           # Node 22 application
+          cache: 'npm'                 # uses committed package-lock.json
+      - run: npm ci                    # reproducible install; no `npm install`, no remote scripts
+      - run: npm test                  # test-only; NO deploy step, NO write credentials, NO secret dumps

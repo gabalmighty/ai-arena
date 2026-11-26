@@ -1,0 +1,79 @@
+﻿py : test_charge_increases_balance_and_returns_balance 
+(test_ledger.LedgerTests.test_charge_increases_balance_and_returns_balance) ... ok
+At line:1 char:108
++ ... sks\T02'; Set-Location $d; py -m unittest test_ledger -v 2>&1 | Tee-O ...
++                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_charge_inc...balance) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_conflicting_replay_same_id_raises_and_preserves_state 
+(test_ledger.LedgerTests.test_conflicting_replay_same_id_raises_and_preserves_state) ... FAIL
+test_duplicate_identical_replay_is_idempotent (test_ledger.LedgerTests.test_duplicate_identical_replay_is_idempotent) 
+... ok
+test_input_event_not_mutated_and_registry_unaffected_by_caller_mutation 
+(test_ledger.LedgerTests.test_input_event_not_mutated_and_registry_unaffected_by_caller_mutation) ... ok
+test_invalid_amount_and_type_rejected_without_state_change 
+(test_ledger.LedgerTests.test_invalid_amount_and_type_rejected_without_state_change) ... FAIL
+test_refund_basic_and_exact_amount (test_ledger.LedgerTests.test_refund_basic_and_exact_amount) ... ok
+test_refund_overdraw_rejected_and_never_below_zero 
+(test_ledger.LedgerTests.test_refund_overdraw_rejected_and_never_below_zero) ... FAIL
+test_state_immutability_after_rejection (test_ledger.LedgerTests.test_state_immutability_after_rejection) ... FAIL
+test_two_invoices_are_independent (test_ledger.LedgerTests.test_two_invoices_are_independent) ... FAIL
+
+======================================================================
+FAIL: test_conflicting_replay_same_id_raises_and_preserves_state 
+(test_ledger.LedgerTests.test_conflicting_replay_same_id_raises_and_preserves_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T02\test_ledger.py", line 49, 
+in test_conflicting_replay_same_id_raises_and_preserves_state
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_amount_and_type_rejected_without_state_change 
+(test_ledger.LedgerTests.test_invalid_amount_and_type_rejected_without_state_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T02\test_ledger.py", line 66, 
+in test_invalid_amount_and_type_rejected_without_state_change
+    with self.assertRaises(ValueError, msg=f"cents={cents!r} should raise"):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised : cents=0 should raise
+
+======================================================================
+FAIL: test_refund_overdraw_rejected_and_never_below_zero 
+(test_ledger.LedgerTests.test_refund_overdraw_rejected_and_never_below_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T02\test_ledger.py", line 99, 
+in test_refund_overdraw_rejected_and_never_below_zero
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_state_immutability_after_rejection (test_ledger.LedgerTests.test_state_immutability_after_rejection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T02\test_ledger.py", line 127, 
+in test_state_immutability_after_rejection
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_two_invoices_are_independent (test_ledger.LedgerTests.test_two_invoices_are_independent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\results\manual\20261126T144218Z__model-unverified\tasks\T02\test_ledger.py", line 146, 
+in test_two_invoices_are_independent
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+FAILED (failures=5)
