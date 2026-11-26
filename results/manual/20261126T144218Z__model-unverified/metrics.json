@@ -185,9 +185,9 @@
                      "Raw test logs preserved; absolute local repo/user paths scrubbed to \u003crepo\u003e/\u003cuser-temp\u003e in saved artifacts; no keys/secrets/transcripts included."
                  ],
     "submission":  {
-                       "git_branch":  null,
-                       "git_commit":  null,
-                       "pr_url":  null,
-                       "pushed":  false
+                       "git_branch":  "arena/manual-20261126T144218Z__model-unverified",
+                       "git_commit":  "47d3473f75ea7950162b0100486df662584a6cac",
+                       "pr_url":  "https://github.com/gabalmighty/ai-arena/pull/6",
+                       "pushed":  true
                    }
 }
