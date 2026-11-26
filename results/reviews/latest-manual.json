@@ -1,10 +1,10 @@
 {
   "schema": "ai-arena/manual-leaderboard-v1",
-  "generated_at_utc": "2026-11-26T07:09:12.893Z",
-  "generated_at_manila": "2026-11-26T15:09:12.893+08:00",
+  "generated_at_utc": "2026-11-26T15:36:04.800Z",
+  "generated_at_manila": "2026-11-26T23:36:04.800+08:00",
   "benchmark": "MANUAL-V1",
   "review_policy": "Full-coverage single-run PASS WITH WARNINGS >=70 and no executed critical scope violation; RECOMMENDED | PASSED requires independent repetitions and stronger role evidence; INCOMPLETE means missing required coverage. Ratings are diagnostic, not probabilities.",
-  "compare_warning": "Do not compare incomplete 8/9 models directly with 9/9 means. Different host environments, dates and reviewer test cases limit comparisons; public tasks are not a frozen common oracle. Historical results are not proof of current availability.",
+  "compare_warning": "Do not compare incomplete 8/9 models directly with 9/9 means. Different host environments, dates and reviewer test cases limit comparisons; public tasks are not a frozen common oracle. Historical results are not proof of current availability. Seaglass Alpha is owner-attributed only; exact model route remains MODEL_UNVERIFIED. Ties use competition ranking.",
   "rows": [
     {
       "model_route": "openrouter/baidu/ernie-5.5-flash-preview:free",
@@ -95,6 +95,44 @@
       "rank": 3
     },
     {
+      "model_route": "MODEL_UNVERIFIED",
+      "model_display_name": "Seaglass Alpha (OpenCode Go; owner-reported)",
+      "owner_reported_model": "Seaglass Alpha",
+      "owner_reported_provider": "OpenCode Go",
+      "attribution_status": "OWNER_REPORTED_ONLY",
+      "exact_route": null,
+      "provider_attested": false,
+      "verdict": "PASS WITH WARNINGS",
+      "quality_score": 95.6,
+      "coverage": "9/9",
+      "scored_tasks": 9,
+      "expected_tasks": 9,
+      "model_finished_manila": "2026-11-26T23:22:59+08:00",
+      "reported_duration_seconds": 2441,
+      "owner_observed_duration_seconds": null,
+      "run_id": "20261126T144218Z__model-unverified",
+      "review_date_manila": "2026-11-26T23:35:51.453+08:00",
+      "source_url": "https://github.com/gabalmighty/ai-arena/pull/6",
+      "review_url": "docs/reviews/2026-11-26-seaglass-alpha-manual-v1.md",
+      "role_suggestions": [
+        "Supervised scoped Python backend implementation",
+        "Mobile offline sync logic",
+        "Test engineering with independent reference controls",
+        "Read-only analysis and planning"
+      ],
+      "limitations": [
+        "T01 wrongly states local selftest requires Docker; actual selftest stages fixtures and calls checked_result locally.",
+        "T03 empty strings produce blank heading/role rather than Unknown; absence contract is ambiguous for empty strings, but empty heading is an accessibility quality edge.",
+        "T05 valid POSIX a:b.txt rejected by cross-platform drive-letter guard; no demonstrated containment escape.",
+        "T07 all four real defects found, but offline brute force and remote timing-oracle claims overstate demonstrated exploitability; severity contextual.",
+        "T08 candidate did not run corrected control; reviewer independently did. Test assertions constrain error wording.",
+        "Exact model/provider route withheld; owner attribution only."
+      ],
+      "completeness": true,
+      "rank": 3,
+      "rank_provisional": true
+    },
+    {
       "model_route": "opencode/tidepool-alpha-free",
       "verdict": "PASS WITH WARNINGS",
       "quality_score": 90.6,
@@ -123,7 +161,7 @@
         "T09 suggests re-adding old potentially compromised key"
       ],
       "completeness": true,
-      "rank": 4
+      "rank": 5
     },
     {
       "model_route": "opencode-go/iceman-contributor-free",
@@ -183,6 +221,7 @@
   "source_reviews": [
     "2026-11-12-first-three-manual-v1",
     "2026-11-19-hy4-tidepool-manual-v1",
-    "2026-11-26-hungerg-manual-v1"
+    "2026-11-26-hungerg-manual-v1",
+    "2026-11-26-seaglass-alpha-manual-v1"
   ]
 }
