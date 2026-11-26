@@ -4,27 +4,30 @@
 
 AI Arena is an open, reproducible screening harness for AI coding models. It tests whether a specific **provider/model route, through OpenCode**, can perform safe, constrained software engineering in disposable environments. The latest **manually Gatekeeper-reviewed** model scores appear below. Candidate artifacts remain in [results/manual](results/manual/), independent reviews in [results/reviews](results/reviews/), and automated benchmark runs (when available) in [results/runs](results/runs/). Timestamps use Philippine time (UTC+08:00) and UTC.
 
-> **Release status:** **Five MANUAL-V1 model runs have been reviewed**, but none is production-certified. The separate Docker-based **automated v0.1.0 benchmark still has no live model runs** and needs its first on-machine integration test. Do not mix manual and automated scores.
+> **Release status:** **Six MANUAL-V1 model runs have been reviewed**, but none is production-certified. The separate Docker-based **automated v0.1.0 benchmark still has no live model runs** and needs its first on-machine integration test. Do not mix manual and automated scores.
 
-## Latest manual evaluation — November 19, 2026 (PHT)
+## Latest manual evaluation — November 26, 2026 (PHT)
 
-**Five models now evaluated under MANUAL-V1.** [Full Nov 19 Hy4/Tidepool Gatekeeper review](docs/reviews/2026-11-19-hy4-tidepool-manual-v1.md) · [Prior Nov 12 three-model review](docs/reviews/2026-11-12-first-three-manual-v1.md) · [Canonical machine-readable leaderboard](results/reviews/latest-manual.json) · [Evaluation prompt](prompts/MANUAL_MODEL_EVALUATION_V1.md).
+**Six models now evaluated under MANUAL-V1.** [Nov 26 HungerG review](docs/reviews/2026-11-26-hungerg-manual-v1.md) · [Nov 19 Hy4/Tidepool review](docs/reviews/2026-11-19-hy4-tidepool-manual-v1.md) · [Nov 12 three-model review](docs/reviews/2026-11-12-first-three-manual-v1.md) · [Canonical leaderboard JSON](results/reviews/latest-manual.json) · [Evaluation prompt](prompts/MANUAL_MODEL_EVALUATION_V1.md).
 
 | Rank (completed runs) | OpenCode model route | Final Gatekeeper result | Diagnostic quality | Coverage | Model-run finish (PHT) | Evidence |
 | ---: | --- | --- | ---: | ---: | --- | --- |
 | **1** | `openrouter/baidu/ernie-5.5-flash-preview:free` | **PASS WITH WARNINGS** | **98.9/100** | **9/9** | Nov 12, 01:30 | [PR #1](https://github.com/gabalmighty/ai-arena/pull/1) |
-| **2** | `opencode-go/hy4-flash-free` | **PASS WITH WARNINGS** | **95.6/100** | **9/9** | Nov 19, 18:44 | [PR #3](https://github.com/gabalmighty/ai-arena/pull/3) |
-| **3** | `opencode/tidepool-alpha-free` | **PASS WITH WARNINGS** | **90.6/100** | **9/9** | Nov 19, 19:18 | [PR #4](https://github.com/gabalmighty/ai-arena/pull/4) |
+| **2** | `opencode-go/hungerg-free` | **PASS WITH WARNINGS** | **96.1/100** | **9/9** | Nov 26, 14:33 | [PR #5](https://github.com/gabalmighty/ai-arena/pull/5) |
+| **3** | `opencode-go/hy4-flash-free` | **PASS WITH WARNINGS** | **95.6/100** | **9/9** | Nov 19, 18:44 | [PR #3](https://github.com/gabalmighty/ai-arena/pull/3) |
+| **4** | `opencode/tidepool-alpha-free` | **PASS WITH WARNINGS** | **90.6/100** | **9/9** | Nov 19, 19:18 | [PR #4](https://github.com/gabalmighty/ai-arena/pull/4) |
 | — | `opencode-go/iceman-contributor-free` | **INCOMPLETE** | **94.4/100*** | **8/9** | Nov 12, 01:33 | [Owner commit](https://github.com/gabalmighty/ai-arena/commit/ae974b7194c2fe398a4984092b042c2b72101ec9) |
 | — | `opencode-go/longcat-2.5-free` | **INCOMPLETE** | **85.0/100*** | **8/9** | Nov 12, 01:43 | [PR #2](https://github.com/gabalmighty/ai-arena/pull/2) |
 
-*** IMPORTANT:** Incomplete 8/9 scores **exclude the missing Python task** and **must not be ranked directly** against the 9/9 scores. All ratings are reviewer diagnostics on tiny public tasks, **not production success rates**. The official automated Docker benchmark has not been run.
+**Important:** Incomplete scores (marked *) exclude the missing Python task and are not ranked with complete runs. These are equal-weight diagnostic reviewer ratings, not production success rates; reviewer tests have evolved and are not a frozen common oracle. Historical scores remain unchanged.
 
-**Current team guidance:** **Baidu** is the leading provisional structured small-fix/test candidate. **Hy4** is another strong supervised option for backend, web/mobile logic and testing, but needs external security review (its report miscalculates an HMAC's prefix entropy). **Tidepool** appears capable in scoped Python/web work, but do **not** grant it autonomous CI/DevOps changes (the submitted workflow used `permissions: read-all` instead of `contents: read`) or signing-key rollout authority. **Iceman** and **LongCat** retain plausible narrow read-only/supervised roles but need complete Python coverage and repeat tests. No model qualifies for **RECOMMENDED | PASSED** or production autonomy from this single benchmark.
+**Current team guidance:** Baidu, HungerG and Hy4 are the leading provisional candidates for supervised, structured small fixes and test writing. HungerG has strong state-safe Python implementation and compromise-aware rollout judgment, but rejects an allowed optional upsert value and a valid POSIX colon filename. Hy4 is strong at web/mobile logic but miscalculates HMAC prefix entropy. Tidepool is suited to scoped Python/web, not autonomous DevOps or key-rotation decisions. Iceman and LongCat need complete Python coverage. No model qualifies for **RECOMMENDED | PASSED** or production autonomy on this single public test.
 
-**Timing and cost:** For Hy4, owner-observed **11m56s** versus candidate-reported **7m44s**. For Tidepool, owner-observed **47m47s** versus candidate-reported **41m29s**. Timer boundaries differ; exact causes are unknown. Provider token counts, request counts, and measured cost were unavailable for all five—**unknown is not zero**. Use a host-side logger for future time comparisons.
+**Latest run:** HungerG reported **18m37s**, 9/9 tasks; reviewer SHA-matched implementations passed 49/51 independent behavioral checks, and its shipping tests passed 21/21 against a correct reference (14 expected failures on the buggy subject). The candidate could not commit due to missing Git author identity; the subsequent PR was merged as evidence, not proof of autonomous publication. No owner stopwatch or usage telemetry was provided.
 
-**Evaluation freshness:** Candidate completion timestamps and Gatekeeper review dates are retained in the [JSON leaderboard](results/reviews/latest-manual.json). Free/alpha endpoints may change; historical PASS is **not proof of present availability**. Review the model route and current quota before assigning work. Score update: **November 19, 2026 (Philippine time)**.
+**Timing and cost:** Hy4 owner-observed 11m56s / candidate-reported 7m44s; Tidepool 47m47s / 41m29s. Timing windows differ. All six lack verified provider token/request/cost telemetry; unknown is not zero.
+
+**Evaluation freshness:** Run dates and review timestamps are retained in the JSON leaderboard. Public tasks and prior answers may be accessible to models; repeat with unseen tasks before promotion. Historical PASS is not proof of current endpoint availability. Score update: November 26, 2026 (Philippine time).
 
 ### Separate automated benchmark
 
